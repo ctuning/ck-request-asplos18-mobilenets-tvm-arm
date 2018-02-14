@@ -1,0 +1,10 @@
+{
+  "data_uoa": "ck-request-asplos18-mobilenets-tvm-arm",
+  "data_uid": "c47366a47958ef4b",
+  "data_alias": "ck-request-asplos18-mobilenets-tvm-arm",
+  "data_name": "ck-request-asplos18-mobilenets-tvm-arm",
+  "dict": {
+    "shared": "git",
+    "url": "https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm"
+  }
+}
