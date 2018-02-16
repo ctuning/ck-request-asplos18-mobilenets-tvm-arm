@@ -63,7 +63,7 @@
         "fine_grain_timer_file": "tmp-ck-timer.json", 
         "need_compute_device": "opencl", 
         "output_invariant_of_repeat": "yes", 
-        "run_cmd_main": "$#BIN_FILE#$", 
+        "run_cmd_main": "$#BIN_FILE#$ cl mobilenet gemm float32", 
         "run_cmd_out1": "tmp-stdout.tmp", 
         "run_cmd_out2": "tmp-stderr.tmp", 
         "run_output_files": [
@@ -76,14 +76,14 @@
   }, 
   "run_vars": {
     "CK_BATCH_SIZE": 1, 
-    "CK_LOWER_BOUND": 0.0, 
-    "CK_NETWORK": "AlexNet", 
-    "CK_SEED": 42, 
-    "CK_UPPER_BOUND": 1.0
+    "CK_NETWORK": "mobilenet", 
+    "CK_ACL_DTYPE": "float32",
+    "CK_ACL_BACKEND":"cl",
+    "CK_ACL_CONV_METHOD": "gemm"
   }, 
   "skip_bin_ext": "yes", 
   "source_files": [
-    "test_all.cc", 
+    "acl_test.cc", 
     "$<<CK_ENV_LIB_ARMCL_UTILS>>$/GraphUtils.cpp", 
     "$<<CK_ENV_LIB_ARMCL_UTILS>>$/Utils.cpp"
   ], 
@@ -96,6 +96,6 @@
     "tvm", 
     "vopencl"
   ], 
-  "target_file": "benchmark", 
+  "target_file": "acl_test", 
   "version": "1.0.0"
 }
