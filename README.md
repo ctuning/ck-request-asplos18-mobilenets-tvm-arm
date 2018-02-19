@@ -3,7 +3,7 @@ CK workflow for ReQuEST ASPLOS'18 submission:
 ## Artifact check-list
 
 ## Installation
-
+``ck pull repo --url=https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm.git``
 ### Install global prerequisites
 
 
