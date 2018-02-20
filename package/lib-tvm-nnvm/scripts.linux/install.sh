@@ -33,7 +33,6 @@ if [ "${?}" != "0" ] ; then
   echo "Error: make failed!"
   exit 1
 fi
-return 0
 cd ${INSTALL_DIR}/src
 
 echo "**************************************************************"
@@ -45,6 +44,6 @@ if [ "${?}" != "0" ] ; then
   echo "Error: cmake failed!"
   exit 1
 fi
-export PACKAGE_BUILD_TYPE=skip
+#export PACKAGE_BUILD_TYPE=skip
 
 return 0

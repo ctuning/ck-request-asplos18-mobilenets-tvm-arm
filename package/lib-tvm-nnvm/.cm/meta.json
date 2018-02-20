@@ -5,12 +5,9 @@
     "extra_dir": "", 
     "git_src_dir": "src", 
     "install_env": {
-      "BLAS_TYPE": "Open", 
       "BUILD_MATLAB": 0, 
       "BUILD_PYTHON": 0, 
       "BUILD_PYTHON_LAYER": 0, 
-      "CMAKE_BUILD_SHARED_LIBS": 0, 
-      "CMAKE_CONFIG": "Release", 
       "CPU_ONLY": 1, 
       "PACKAGE_BUILD_TYPE": "cmake", 
       "PACKAGE_CONFIGURE_FLAGS": "", 
@@ -53,9 +50,6 @@
       "tags": "lib,opencl"
     }
   }, 
-  "end_full_path": {
-    "linux": "install/bin/nnvm" 
-  }, 
   "need_cpu_info": "no", 
   "only_for_host_os_tags": [
     "linux" 
@@ -65,10 +59,11 @@
   ], 
   "process_script": "install", 
   "soft_uoa": "04ab08137582bd03", 
-  "suggested_path": "lib-nnvm", 
+  "suggested_path": "lib-tvm-nnvm", 
   "tags": [
     "lib", 
     "nnvm", 
+    "tvm",
     "vmaster", 
     "vgpu" 
   ], 
