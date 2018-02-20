@@ -22,33 +22,12 @@ echo "Preparing vars for NNVM/TVM ..."
 EXTRA_FLAGS=""
 
 cd ${INSTALL_DIR}/src
-pwd 
-
-if [ ${USE_OPENBLAS} == "1" ];then
-   echo "Use OpenBLAS engine"
-   BLAS_ENGINE="openblas";
-else
-  echo "Specify BLAS engine"
-fi;
 
 make -j 2\
       USE_OPENCV=${USE_OPENCV} \
       USE_BLAS=${BLAS_ENGINE} \
 
 
-if [ "${?}" != "0" ] ; then
-  echo "Error: cmake failed!"
-  exit 1
-fi
-
-exit 1
-
-cd ${INSTALL_DIR}/src
-make; 
-if [ "${?}" != "0" ] ; then
-  echo "Error: cmake failed!"
-  exit 1
-fi
-export PACKAGE_BUILD_TYPE=skip
+#export PACKAGE_BUILD_TYPE=skip
 
 return 0
