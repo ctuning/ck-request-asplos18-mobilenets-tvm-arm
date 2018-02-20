@@ -14,3 +14,4 @@ CK workflow for ReQuEST ASPLOS'18 submission:
 ``` $ck detect platform.gpgpu --opencl ```
 
 ### Pre-install CK dependencies
+``ck pull repo --url=https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm.git``
