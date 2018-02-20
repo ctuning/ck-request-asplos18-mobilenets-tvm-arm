@@ -23,6 +23,7 @@
       "PACKAGE_SKIP_CLEAN_INSTALL": "NO", 
       "PACKAGE_SKIP_CLEAN_OBJ": "NO", 
       "PACKAGE_SKIP_CLEAN_SRC_DIR": "NO", 
+      "PACKAGE_SKIP_LINUX_MAKE": "YES",
       "PACKAGE_SUB_DIR": "src", 
       "PACKAGE_SUB_DIR1": "src", 
       "PACKAGE_URL_LINUX": "https://github.com/apache/incubator-mxnet.git", 
@@ -63,7 +64,7 @@
 
   }, 
   "end_full_path": {
-    "linux": "install/bin/mxnet" 
+    "linux": "install/python/setup.py" 
   }, 
   "need_cpu_info": "no", 
   "only_for_host_os_tags": [
@@ -80,6 +81,7 @@
     "vmaster", 
     "vsoruce"
   ], 
+  "soft_uoa": "324a4d04d538a657",
   "use_preprocess_scripts_from_another_entry": {
     "data_uoa": "fd44428fbc77f77f", 
     "module_uoa": "84e27ad9dd12e734"
