@@ -15,7 +15,7 @@
 # INSTALL_DIR
 
 echo "**************************************************************"
-echo "Preparing vars for NNVM/TVM ..."
+echo "Preparing vars for MxNet ..."
 
 
 # Check extra stuff
@@ -23,9 +23,9 @@ EXTRA_FLAGS=""
 
 cd ${INSTALL_DIR}/src
 
-make -j 2\
+make -j 2 \
       USE_OPENCV=${USE_OPENCV} \
-      USE_BLAS=${BLAS_ENGINE} \
+      USE_BLAS=openblas \
 
 
 #export PACKAGE_BUILD_TYPE=skip
