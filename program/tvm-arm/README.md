@@ -5,7 +5,7 @@ To build this program, you need ArmCL compiled with Graph API:
 
 ```
 $ ck pull all
-$ ck install package:lib-armcl-opencl-private --env.USE_GRAPH=ON --env.USE_NEON=ON --extra_version=-graph
+$ ck install package:lib-armcl-opencl-17.12 --env.USE_GRAPH=ON --env.USE_NEON=ON --extra_version=-graph
 ```
 
 When this is done, compile and run the program as usual:
@@ -15,7 +15,7 @@ $ ck compile
 $ ck run
 ```
 
-You can run on different networks:
+You can run on different networks [TO FIX]:
 
 * `ck run --env.CK_NETWORK=alexnet` (this is the default)
 
