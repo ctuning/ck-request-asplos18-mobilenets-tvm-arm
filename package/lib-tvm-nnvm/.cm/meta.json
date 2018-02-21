@@ -8,7 +8,7 @@
       "BUILD_MATLAB": 0, 
       "BUILD_PYTHON": 0, 
       "BUILD_PYTHON_LAYER": 0, 
-      "PACKAGE_BUILD_TYPE": "cmake", 
+      "PACKAGE_BUILD_TYPE": "make", 
       "PACKAGE_CONFIGURE_FLAGS": "", 
       "PACKAGE_CONFIGURE_FLAGS_LINUX": "", 
       "PACKAGE_COPY": "NO", 
