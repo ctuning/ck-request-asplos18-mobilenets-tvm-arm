@@ -69,7 +69,6 @@
     "vgpu",
     "tvm-nnvm" 
   ], 
-  "soft_uoa": "2086788429a96c47",
   "use_preprocess_scripts_from_another_entry": {
     "data_uoa": "fd44428fbc77f77f", 
     "module_uoa": "84e27ad9dd12e734"
