@@ -59,15 +59,17 @@
     "linux" 
   ], 
   "process_script": "install", 
-  "soft_uoa": "04ab08137582bd03", 
+  "soft_uoa": "2086788429a96c47", 
   "suggested_path": "lib-tvm-nnvm", 
   "tags": [
     "lib", 
     "nnvm", 
     "tvm",
     "vmaster", 
-    "vgpu" 
+    "vgpu",
+    "tvm-nnvm" 
   ], 
+  "soft_uoa": "2086788429a96c47",
   "use_preprocess_scripts_from_another_entry": {
     "data_uoa": "fd44428fbc77f77f", 
     "module_uoa": "84e27ad9dd12e734"
