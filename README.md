@@ -6,6 +6,10 @@ CK workflow for ReQuEST ASPLOS'18 submission:
 
 ### Install global prerequisites
 
+```
+# sudo apt-get install libtinfo-dev 
+```
+
 
 ### Install Collective Knowledge
 ```$ pip install ck ```
