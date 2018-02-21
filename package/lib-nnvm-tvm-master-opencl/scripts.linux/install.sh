@@ -23,11 +23,9 @@ EXTRA_FLAGS=""
 
 cd ${INSTALL_DIR}/src/tvm
 pwd 
-make -j 4\
+make -j ${CK_HOST_CPU_NUMBER_OF_PROCESSORS} \
       USE_OPENCL=${USE_OPENCL}\
-      LLVM_CONFIG=llvm-config \
-      
-
+      LLVM_CONFIG=${CK_LLVM_CONFIG} \
 
 if [ "${?}" != "0" ] ; then
   echo "Error: make failed!"
@@ -37,7 +35,6 @@ cd ${INSTALL_DIR}/src
 
 echo "**************************************************************"
 echo "Preparing vars for NVVM ..."
-
 
 make; 
 if [ "${?}" != "0" ] ; then
