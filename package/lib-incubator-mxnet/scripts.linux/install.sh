@@ -19,12 +19,9 @@ echo "Preparing vars for MxNet ..."
 
 # Check extra stuff
 export MXNET_LIB_DIR=${INSTALL_DIR}/lib
-export CK_MAKE_BEFORE="USE_OPENCV=1 USE_BLAS=openblas"
+
 cd ${INSTALL_DIR}/src
 
-make -j 2 \
-      USE_OPENCV=${USE_OPENCV} \
-      USE_BLAS=openblas \
-
+make ${CK_MAKE_BEFORE} -j ${CK_HOST_CPU_NUMBER_OF_PROCESSORS} USE_OPENCV=${USE_OPENCV} USE_BLAS=${USE_BLAS}
 
 return 0
