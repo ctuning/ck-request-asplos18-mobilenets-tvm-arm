@@ -23,7 +23,7 @@ EXTRA_FLAGS=""
 
 cd ${INSTALL_DIR}/src/tvm
 pwd 
-make -j 8\
+make -j 4\
       USE_OPENCL=${USE_OPENCL}\
       LLVM_CONFIG=llvm-config \
       
@@ -36,7 +36,7 @@ fi
 cd ${INSTALL_DIR}/src
 
 echo "**************************************************************"
-echo "Preparing vars for TVM ..."
+echo "Preparing vars for NVVM ..."
 
 
 make; 

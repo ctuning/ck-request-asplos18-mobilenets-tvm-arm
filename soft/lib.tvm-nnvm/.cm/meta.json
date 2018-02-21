@@ -1,0 +1,23 @@
+{
+  "auto_detect": "yes", 
+  "customize": {
+    "check_that_exists": "yes", 
+    "ck_version": 10, 
+    "env_prefix": "CK_ENV_LIB_NNVM_TVM", 
+    "limit_recursion_dir_search": {
+      "linux": 5, 
+      "win": 5
+    }, 
+    "soft_file": {
+      "linux": "nnvm-tvm/__init__.py", 
+      "win": "nnvm-tvm\\__init__.py"
+    }
+  }, 
+  "soft_name": "NNVM/TVM library", 
+  "tags": [
+    "lib", 
+    "nnvm",
+    "tvm",
+    "nnvm-tvm"
+  ]
+}
