@@ -141,13 +141,13 @@ $ ck compile program:  --cmd_key=all
 $ ck run program:tvm-mxnet  --cmd_key=all
 ```
 
-## NNVM/TVM client
+### NNVM/TVM client
 
 ```
 $ ck run program:tvm-nnvm  --cmd_key=all 
 ```
 
-## Other options 
+### Other options 
 
 ``` 
 ck run program: * program_name * --cmd_key=help 
