@@ -53,8 +53,11 @@ ck detect soft:lib.blas
 ```
 $ ck show env --tags=blas,no-openblas
 ```
-  
-``cfe1e23a4472bb1d   linux-32    32 BLAS library api-3    32bits,blas,blas,cblas,host-os-linux-32,lib,no-openblas,target-os-linux-32,v0,v0.3
+
+A possible output:
+
+``
+cfe1e23a4472bb1d   linux-32    32 BLAS library api-3    32bits,blas,blas,cblas,host-os-linux-32,lib,no-openblas,target-os-linux-32,v0,v0.3
 ``
 
 ### Install OpenBLAS
