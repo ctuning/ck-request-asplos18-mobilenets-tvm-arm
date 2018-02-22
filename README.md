@@ -99,12 +99,9 @@ $ ck detect soft:compiler.llvm
 
 ### ARM Compute Library
 
-``
-$ ck install package:lib-armcl-opencl-17.12 \
-     --env.USE_GRAPH=ON \
-     --env.USE_NEON=ON \
-     --env.USE_EMBEDDED_KERNELS=ON 
-``
+```
+$ ck install package:lib-armcl-opencl-17.12  --env.USE_GRAPH=ON --env.USE_NEON=ON --env.USE_EMBEDDED_KERNELS=ON 
+```
 
 To check other versions available via CK 
 
@@ -114,9 +111,9 @@ $ ck list package:lib-armcl-opencl-*
 
 ### MXNet with OpenBLAS
 
-``
+```
 $ ck install package:lib-mxnet-master-cpu 
-``
+```
 
 ### NNVM / TVM 
 
@@ -129,26 +126,31 @@ $ ck install package:lib-nnvm-tvm-master-opencl
 
 ### ARM Compute Library client
 This program must be first compiled
+
 ```
 $ ck compile program:tvm-arm 
 ```
 
-`` 
+``` 
 $ ck compile program:  --cmd_key=all
-``
+```
 
 ### MXNet with OpenBLAS client
-`` 
+
+``` 
 $ ck run program:tvm-mxnet  --cmd_key=all
-``
+```
 
 ## NNVM/TVM client
-``$ ck run program:tvm-nnvm  --cmd_key=all 
-``
+
+```
+$ ck run program:tvm-nnvm  --cmd_key=all 
+```
 
 ## Other options 
-`` 
+
+``` 
 ck run program: * program_name * --cmd_key=help 
-``
+```
 
 ## FAQ 
