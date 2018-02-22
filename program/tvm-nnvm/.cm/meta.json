@@ -1,0 +1,77 @@
+{
+  "backup_data_uid": "c44243da928112c2", 
+  "data_name": "tvm-nnvm", 
+  "no_compile": "yes", 
+  "no_target_file": "yes", 
+  "print_files_after_run": [
+    "tmp-stdout.tmp"
+  ], 
+  "process_in_tmp": "yes", 
+  "program": "yes", 
+  "run_cmds": {
+    "all": {
+      "ignore_return_code": "no", 
+      "run_time": {
+        "output_invariant_of_repeat": "yes", 
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model all", 
+        "run_cmd_out1": "tmp-stdout.tmp", 
+        "run_cmd_out2": "tmp-stderr.tmp", 
+        "run_output_files": [
+          "tmp-ck-timer.json", 
+          "tmp-ck-output.bin", 
+          "tmp-ck-output.json"
+        ]
+      }
+    }, 
+    "help": {
+      "ignore_return_code": "yes", 
+      "run_time": {
+        "need_compute_device": "opencl", 
+        "output_invariant_of_repeat": "yes", 
+        "run_cmd_main": "sh ../help.sh", 
+        "run_cmd_out1": "tmp-stdout.tmp", 
+        "run_cmd_out2": "tmp-stderr.tmp"
+      }
+    }, 
+    "run-net": {
+      "ignore_return_code": "yes", 
+      "run_time": {
+        "output_invariant_of_repeat": "yes", 
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model=$<<CK_TVM_MODEL>>$", 
+        "run_cmd_out1": "tmp-stdout.tmp", 
+        "run_cmd_out2": "tmp-stderr.tmp", 
+        "run_output_files": [
+          "tmp-ck-timer.json", 
+          "tmp-ck-output.bin", 
+          "tmp-ck-output.json"
+        ]
+      }
+    }
+  }, 
+  "run_deps": {
+    "lib-nnvm-tvm": {
+      "local": "yes", 
+      "name": "NNVM TVM library", 
+      "skip_pruning_by_other_deps": "yes", 
+      "sort": 10, 
+      "tags": "lib,nnvm,nnvm-tvm,vgpu"
+    }, 
+    "python": {
+      "local": "yes", 
+      "name": "python", 
+      "sort": 8, 
+      "tags": "compiler,lang-python,python"
+    }
+  }, 
+  "run_vars": {
+    "CK_BATCH_SIZE": 1, 
+    "CK_TVM_MODEL": "mobilenet",
+    "CK_TVM_DTYPE": "flaot32"
+  }, 
+  "tags": [
+    "tmv-nnvm", 
+    "bechmark", 
+    "tvm", 
+    "vgpu" 
+  ]
+}
