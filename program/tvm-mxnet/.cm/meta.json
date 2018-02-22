@@ -62,7 +62,8 @@
     }
   }, 
   "print_files_after_run": [
-     "tmp-stdout.tmp"
+     "tmp-stdout.tmp",
+     "tmp-stderr.tmp"
   ],
   "run_vars": {
     "OMP_NUM_THREADS": 6,
