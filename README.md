@@ -61,23 +61,30 @@ cfe1e23a4472bb1d   linux-32    32 BLAS library api-3    32bits,blas,blas,cblas,h
 ``
 
 ### Install OpenBLAS
-``
-$ ck install package:lib-openblas-0.2.18-universal
-``
 
-If you want to test other openblas version, 
-``$ ck list package:lib-openblas* ``
+```
+$ ck install package:lib-openblas-0.2.18-universal
+```
+
+If you want to test other openblas version:
+
+```
+$ ck list package:lib-openblas* 
+```
 
 
 ### Install LaPack
-``
+
+```
 $ ck install package:lib-lapack-3.4.2
-``
+```
 
 ### Install or detect llvm/clang compiler
-`` 
+
+```
 $ ck install package:compiler-llvm-4.0.0-universal
-``
+```
+
 On * Firefly RK-3399 * install **llvm** via apt and the detect it via CK.
 
 ```
@@ -91,6 +98,7 @@ $ ck detect soft:compiler.llvm
 ## Packages installation
 
 ### ARM Compute Library
+
 ``
 $ ck install package:lib-armcl-opencl-17.12 \
      --env.USE_GRAPH=ON \
@@ -98,17 +106,20 @@ $ ck install package:lib-armcl-opencl-17.12 \
      --env.USE_EMBEDDED_KERNELS=ON 
 ``
 
-To check other version available via CK 
+To check other versions available via CK 
+
 ```
 $ ck list package:lib-armcl-opencl-* 
 ```
 
 ### MXNet with OpenBLAS
+
 ``
 $ ck install package:lib-mxnet-master-cpu 
 ``
 
 ### NNVM / TVM 
+
 ```
 $ ck install package:lib-nnvm-tvm-master-opencl 
 ```
@@ -117,7 +128,7 @@ $ ck install package:lib-nnvm-tvm-master-opencl
 
 
 ### ARM Compute Library client
-This program must be first compiled.
+This program must be first compiled
 ```
 $ ck compile program:tvm-arm 
 ```
