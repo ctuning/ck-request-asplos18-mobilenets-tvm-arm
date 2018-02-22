@@ -2,9 +2,11 @@
 CK workflow for ReQuEST ASPLOS'18 submission: 
 ## Artifact check-list
 
-## Installation
 
-### Install global prerequisites
+
+## Installation 
+
+### Install global prerequisites (Ubuntu)
 
 ```
 # sudo apt-get install libtinfo-dev 
@@ -17,11 +19,12 @@ CK workflow for ReQuEST ASPLOS'18 submission:
 ```$ ck pull repo --url=https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm```
 
 ``` $ ck pull repo:ck-mxnet```
+
 ### Detect and test OpenCL driver
 ```$ ck detect platform.gpgpu --opencl ```
 
-## Install libBLAS, openblas and LaPack
-### libBLAS
+
+### Install libBLAS
 ```$ sudo apt-get install libblas*```
 
 * To detect and register in ck :
@@ -33,15 +36,15 @@ CK workflow for ReQuEST ASPLOS'18 submission:
 ``cfe1e23a4472bb1d   linux-32    32 BLAS library api-3    32bits,blas,blas,cblas,host-os-linux-32,lib,no-openblas,target-os-linux-32,v0,v0.3
 ``
 
-### OpenBLAS
+### Install OpenBLAS
 ``$ ck install package:lib-openblas-0.2.18-universal``
 If you want to test other openblas version, 
 ``$ ck list package:lib-openblas* ``
 
-### LaPack
+### Install LaPack
 ``$ ck install package:lib-lapack-3.4.2``
 
-## Install or detect llvm/clang compiler
+### Install or detect llvm/clang compiler
 
 `` $ck install package:compiler-llvm-4.0.0-universal ``
 
