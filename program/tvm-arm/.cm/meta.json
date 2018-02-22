@@ -52,18 +52,17 @@
     "linux"
   ], 
   "print_files_after_run": [
-    "tmp-stderr.tmp"
+    "tmp-stdout.tmp"
   ], 
   "process_in_tmp": "yes", 
   "program": "yes", 
   "run_cmds": {
-    "default": {
+    "all": {
       "ignore_return_code": "yes", 
       "run_time": {
-        "fine_grain_timer_file": "tmp-ck-timer.json", 
         "need_compute_device": "opencl", 
         "output_invariant_of_repeat": "yes", 
-        "run_cmd_main": "$#BIN_FILE#$ cl mobilenet gemm float32", 
+        "run_cmd_main": "$#BIN_FILE#$ all", 
         "run_cmd_out1": "tmp-stdout.tmp", 
         "run_cmd_out2": "tmp-stderr.tmp", 
         "run_output_files": [
@@ -72,14 +71,39 @@
           "tmp-ck-output.json"
         ]
       }
+    },
+    "run-net": {
+      "ignore_return_code": "yes", 
+      "run_time": {
+        "need_compute_device": "opencl", 
+        "output_invariant_of_repeat": "yes", 
+        "run_cmd_main": "$#BIN_FILE#$  $<<CK_ACL_BACKEND>>$ $<<CK_ACL_MODEL>>$ $<<CK_ACL_CONV_METHOD>>$ $<<CK_ACL_DTYPE>>$", 
+        "run_cmd_out1": "tmp-stdout.tmp", 
+        "run_cmd_out2": "tmp-stderr.tmp", 
+        "run_output_files": [
+          "tmp-ck-timer.json", 
+          "tmp-ck-output.bin", 
+          "tmp-ck-output.json"
+        ]
+      }
+    },
+    "help": {
+      "ignore_return_code": "yes", 
+      "run_time": {
+        "need_compute_device": "opencl", 
+        "output_invariant_of_repeat": "yes", 
+        "run_cmd_main": "sh ../help.sh", 
+        "run_cmd_out1": "tmp-stdout.tmp", 
+        "run_cmd_out2": "tmp-stderr.tmp" 
+      }
     }
   }, 
   "run_vars": {
     "CK_BATCH_SIZE": 1, 
-    "CK_NETWORK": "mobilenet", 
-    "CK_ACL_DTYPE": "float32",
     "CK_ACL_BACKEND":"cl",
-    "CK_ACL_CONV_METHOD": "gemm"
+    "CK_ACL_MODEL": "mobilenet", 
+    "CK_ACL_CONV_METHOD": "gemm",
+    "CK_ACL_DTYPE": "float32"
   }, 
   "skip_bin_ext": "yes", 
   "source_files": [

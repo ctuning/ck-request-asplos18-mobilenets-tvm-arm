@@ -211,7 +211,8 @@ int main(int argc, const char **argv)
         std::string model[] = {"vgg16", "mobilenet"};
         std::string conv_method[] = {"gemm", "direct"};
         std::string dtype[] = {"float32", "float16"};
-
+        
+        
         for (int i = 0; i < sizeof(backend)/sizeof(backend[0]); i++) {
             for (int j = 0; j < sizeof(model)/sizeof(model[0]); j++) {
                 for (int k = 0; k < sizeof(conv_method)/sizeof(conv_method[0]); k++) {
