@@ -9,7 +9,6 @@
      "lib-mxnet": {
        "local": "yes", 
        "name": "MXNet library", 
-       "no_tags": "vsrc", 
        "skip_pruning_by_other_deps": "yes", 
        "sort": 10, 
        "tags": "lib,mxnet,vcpu"
