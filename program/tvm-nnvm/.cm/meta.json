@@ -4,7 +4,8 @@
   "no_compile": "yes", 
   "no_target_file": "yes", 
   "print_files_after_run": [
-    "tmp-stdout.tmp"
+    "tmp-stdout.tmp",
+    "tmp-stderr.tmp"
   ], 
   "process_in_tmp": "yes", 
   "program": "yes", 
