@@ -29,10 +29,6 @@ or
 $ ck pull repo --url=https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm
 ```
 
-``` 
-$ ck pull repo:ck-mxnet
-```
-
 ### Detect and test OpenCL driver
 ```
 $ ck detect platform.gpgpu --opencl 
