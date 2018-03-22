@@ -38,6 +38,11 @@
       "ignore_return_code": "yes", 
       "run_time": {
         "output_invariant_of_repeat": "yes", 
+        "post_process_via_ck": "no",
+        "post_process_cmds":[
+          "python $#src_path_local#$ck_postprocess.py"
+        ],
+
         "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model=$<<CK_TVM_MODEL>>$", 
         "run_cmd_out1": "tmp-stdout.tmp", 
         "run_cmd_out2": "tmp-stderr.tmp", 
