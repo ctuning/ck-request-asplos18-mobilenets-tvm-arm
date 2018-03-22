@@ -151,7 +151,7 @@ $ ck compile program:tvm-arm
 ```
 
 ``` 
-$ ck compile program:  --cmd_key=all
+$ ck run program:tvm-arm  --cmd_key=all
 ```
 
 ### MXNet with OpenBLAS client
@@ -167,6 +167,7 @@ $ ck run program:tvm-nnvm  --cmd_key=all
 ```
 
 ### Other options 
+For each program, ```help``` commands provide a description of possible options to pass to ```ck run program: * program_name *```
 
 ``` 
 ck run program: * program_name * --cmd_key=help 

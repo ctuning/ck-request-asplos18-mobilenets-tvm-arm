@@ -38,7 +38,12 @@
       "ignore_return_code": "yes", 
       "run_time": {
         "output_invariant_of_repeat": "yes", 
-        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model=$<<CK_TVM_MODEL>>$", 
+        "post_process_via_ck": "yes",
+        "post_process_cmds":[
+          "python $#src_path_local#$ck_postprocess.py"
+        ],
+        "fine_grain_timer_file": "tmp-ck-output.json",
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model=$<<CK_TVM_MODEL>>$ --dtype=$<<CK_TVM_DTYPE>>$", 
         "run_cmd_out1": "tmp-stdout.tmp", 
         "run_cmd_out2": "tmp-stderr.tmp", 
         "run_output_files": [
@@ -67,7 +72,7 @@
   "run_vars": {
     "CK_BATCH_SIZE": 1, 
     "CK_TVM_MODEL": "mobilenet",
-    "CK_TVM_DTYPE": "flaot32"
+    "CK_TVM_DTYPE": "float32"
   }, 
   "tags": [
     "tmv-nnvm", 

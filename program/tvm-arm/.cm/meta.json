@@ -52,8 +52,7 @@
     "linux"
   ], 
   "print_files_after_run": [
-    "tmp-stdout.tmp",
-    "tmp-stderr.tmp"
+    "tmp-ck-output.json"
   ], 
   "process_in_tmp": "yes", 
   "program": "yes", 
@@ -62,6 +61,10 @@
       "ignore_return_code": "yes", 
       "run_time": {
         "need_compute_device": "opencl", 
+        "post_process_via_ck": "no",
+        "post_process_cmds":[
+          "python $#src_path_local#$ck_postprocess.py"
+        ],
         "output_invariant_of_repeat": "yes", 
         "run_cmd_main": "$#BIN_FILE#$ all", 
         "run_cmd_out1": "tmp-stdout.tmp", 
@@ -76,8 +79,13 @@
     "run-net": {
       "ignore_return_code": "yes", 
       "run_time": {
+        "post_process_cmds":[
+          "python $#src_path_local#$ck_postprocess.py"
+        ],
         "need_compute_device": "opencl", 
         "output_invariant_of_repeat": "yes", 
+        "post_process_via_ck": "yes",
+        "fine_grain_timer_file": "tmp-ck-output.json",
         "run_cmd_main": "$#BIN_FILE#$  $<<CK_ACL_BACKEND>>$ $<<CK_ACL_MODEL>>$ $<<CK_ACL_CONV_METHOD>>$ $<<CK_ACL_DTYPE>>$", 
         "run_cmd_out1": "tmp-stdout.tmp", 
         "run_cmd_out2": "tmp-stderr.tmp", 
