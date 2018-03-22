@@ -1,8 +1,31 @@
-# ck-request-asplos18-mobilenets-tvm
-CK workflow for ReQuEST ASPLOS'18 submission: 
-## Artifact check-list
+# Collective Knowledge workflow for image classification submitted to [ReQuEST at ASPLOS'18](http://cknowledge.org/request-cfp-asplos2018.html)
 
+* **Title:** Optimizing Deep Learning Workloads on ARM GPU with TVM
+* **Authors:** Lianmin Zheng, Tianqi Chen
 
+## Artifact check-list (meta-information)
+
+We use the standard [Artifact Description check-list](http://ctuning.org/ae/submission_extra.html) from systems conferences including CGO, PPoPP, PACT and SuperComputing.
+
+* **Algorithm:** image classification
+* **Program:** TVM/NNVM, ARM Compute Library, MXNet, OpenBLAS
+* **Compilation:** g++
+* **Transformations:**
+* **Binary:** will be compiled on a target platform
+* **Data set:** ImageNet 2012 validation (50,000 images)
+* **Run-time environment:** Linux with OpenCL
+* **Hardware:** Firefly-RK3399 with ARM Mali-T860MP4 or other boards with ARM Mali GPUs
+* **Run-time state:** set by our scripts
+* **Execution:** inference speed
+* **Metrics:** total execution time; top1/top5 accuracy over some (all) images from the data set
+* **Output:** classification result; execution time; accuracy
+* **Experiments:** CK command line
+* **How much disk space required (approximately)?** 
+* **How much time is needed to prepare workflow (approximately)?** 
+* **How much time is needed to complete experiments (approximately)?**
+* **Collective Knowledge workflow framework used?** Yes
+* **Publicly available?:** Yes
+* **Experimental results:** https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm
 
 ## Installation 
 

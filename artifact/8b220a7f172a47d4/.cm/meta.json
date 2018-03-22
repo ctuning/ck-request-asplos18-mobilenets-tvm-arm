@@ -1,0 +1,16 @@
+{
+  "acm_badges":{
+    "available":"yes",
+    "functional":"yes",
+    "reusable":"yes",
+    "replicated":"",
+    "reproduced":""
+  },
+  "dois": [
+  ],
+  "html":"",
+  "repos": [
+    {"name":"CK workflow", "url":"https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm"},
+    {"name":"CK results", "url":"https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm"}
+  ]
+}
