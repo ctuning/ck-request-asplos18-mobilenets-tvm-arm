@@ -128,7 +128,7 @@ $ ck compile program:tvm-arm
 ```
 
 ``` 
-$ ck compile program:  --cmd_key=all
+$ ck run program:tvm-arm  --cmd_key=all
 ```
 
 ### MXNet with OpenBLAS client
