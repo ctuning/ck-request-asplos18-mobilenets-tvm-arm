@@ -22,7 +22,6 @@ b="openblas"
 c="gemm"
 for m in  "${mxnet_models[@]}"
 do
-#    ck benchmark program:tvm-mxnet --cmd_key=run-net --env.CK_MXNET_MODEL=$m --record --record_repo=local
 #    ck run program:tvm-mxnet --cmd_key=run-net --env.CK_MXNET_MODEL=$m
      echo $name-$b-$m-$c-$d
      ck benchmark program:tvm-mxnet --cmd_key=run-net --env.CK_MXNET_MODEL=$m --record --record_repo=local --record_uoa=ck-request-asplos18-tvm-$name-$b-$m-$c-$d --tags=request,request-asplos18,tvm,$name,$b,$m,$c,$d
@@ -38,7 +37,7 @@ do
     do
         #ck run program:tvm-nnvm --cmd_key=run-net --env.CK_TVM_MODEL=$m  --env.CK_TVM_DTYPE=$d
         echo $name-$b-$m-$c-$d
- #       ck benchmark program:tvm-nnvm --cmd_key=run-net --env.CK_TVM_MODEL=$m  --env.CK_TVM_DTYPE=$d --record --record_repo=local --record_uoa=ck-request-asplos18-tvm-$name-$b-$m-$c-$d --tags=request,request-asplos18,tvm,$name,$b,$m,$c,$d
+        ck benchmark program:tvm-nnvm --cmd_key=run-net --env.CK_TVM_MODEL=$m  --env.CK_TVM_DTYPE=$d --record --record_repo=local --record_uoa=ck-request-asplos18-tvm-$name-$b-$m-$c-$d --tags=request,request-asplos18,tvm,$name,$b,$m,$c,$d
     done
 done
 
@@ -55,7 +54,7 @@ do
             do
                   #ck run program:tvm-arm --cmd_key=run-net --env.CK_ACL_BACKEND=$b --env.CK_ACL_MODEL=$m --env.CK_ACL_CONV_METHOD=$c --env.CK_ACL_DTYPE=$d  
                   echo $name-$b-$m-$c-$d
-                  # ck benchmark program:tvm-arm --cmd_key=run-net --env.CK_ACL_BACKEND=$b --env.CK_ACL_MODEL=$m --env.CK_ACL_CONV_METHOD=$c --env.CK_ACL_DTYPE=$d --record_uoa=ck-request-asplos18-tvm-$name-$b-$m-$c-$d --tags=request,request-asplos18,tvm,$name,$b,$m,$c,$d
+                  ck benchmark program:tvm-arm --cmd_key=run-net --env.CK_ACL_BACKEND=$b --env.CK_ACL_MODEL=$m --env.CK_ACL_CONV_METHOD=$c --env.CK_ACL_DTYPE=$d --record_uoa=ck-request-asplos18-tvm-$name-$b-$m-$c-$d --tags=request,request-asplos18,tvm,$name,$b,$m,$c,$d
             done
         done
     done
