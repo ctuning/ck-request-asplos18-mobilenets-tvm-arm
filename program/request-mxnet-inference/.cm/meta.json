@@ -1,6 +1,6 @@
 {
   "backup_data_uid": "8ab8a4d4885b02d9", 
-  "data_name": "tvm-mxnet", 
+  "data_name": "request-armcl-inference", 
   "no_compile": "yes", 
   "no_target_file": "yes", 
   "process_in_tmp": "yes", 

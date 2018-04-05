@@ -49,7 +49,7 @@ or
 
 ### Install this CK repository with all dependencies (other CK repos to reuse artifacts)
 ```
-$ ck pull repo --url=https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm
+$ ck pull repo:ck-request-asplos18-mobilenets-tvm-arm
 ```
 
 ### Detect and test OpenCL driver
@@ -147,23 +147,23 @@ $ ck install package:lib-nnvm-tvm-master-opencl
 This program must be first compiled
 
 ```
-$ ck compile program:tvm-arm 
+$ ck compile program:request-armcl-inference 
 ```
 
 ``` 
-$ ck run program:tvm-arm  --cmd_key=all
+$ ck run program:request-armcl-inference  --cmd_key=all
 ```
 
 ### MXNet with OpenBLAS client
 
 ``` 
-$ ck run program:tvm-mxnet  --cmd_key=all
+$ ck run program:request-armcl-inference  --cmd_key=all
 ```
 
 ### NNVM/TVM client
 
 ```
-$ ck run program:tvm-nnvm  --cmd_key=all 
+$ ck run program:request-tvm-nnvm-inference  --cmd_key=all 
 ```
 
 ### Other options 

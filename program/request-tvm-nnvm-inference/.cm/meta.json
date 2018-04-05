@@ -1,6 +1,6 @@
 {
   "backup_data_uid": "c44243da928112c2", 
-  "data_name": "tvm-nnvm", 
+  "data_name": "request-tvm-nnvm-inference", 
   "no_compile": "yes", 
   "no_target_file": "yes", 
   "print_files_after_run": [
