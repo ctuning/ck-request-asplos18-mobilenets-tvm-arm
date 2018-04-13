@@ -24,6 +24,13 @@
           "skip_pruning_by_other_deps": "yes",
           "sort": 10,
           "tags": "lib,mxnet,vcpu"
+        },
+        "mxnet-model": {
+          "local": "yes",
+          "name": "MXNet model",
+          "skip_pruning_by_other_deps": "yes",
+          "sort": 20,
+          "tags": "mxnetmodel"
         }
       }, 
       "ignore_return_code": "no", 
@@ -45,6 +52,13 @@
           "skip_pruning_by_other_deps": "yes",
           "sort": 10,
           "tags": "lib,mxnet,vcpu"
+        },
+        "mxnet-model": {
+          "local": "yes",
+          "name": "MXNet model",
+          "skip_pruning_by_other_deps": "yes",
+          "sort": 20,
+          "tags": "mxnetmodel"
         },
         "dataset-imagenet-val": {
           "force_target_as_host": "yes", 

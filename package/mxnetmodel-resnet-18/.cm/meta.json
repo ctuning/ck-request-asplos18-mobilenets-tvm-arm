@@ -4,6 +4,7 @@
     "extra_dir": "",
     "install_env": {
       "MXNET_MODEL": "resnet-18",
+      "MXNET_MODEL_ID": "resnet18_v1",
       "MXNET_MODEL_LABELS": "synset.txt",
       "MXNET_MODEL_PARAMS": "resnet18_v1-38d6d423.params",
       "MXNET_URL_MODEL_LABELS": "http://data.mxnet.io/models/imagenet-11k"

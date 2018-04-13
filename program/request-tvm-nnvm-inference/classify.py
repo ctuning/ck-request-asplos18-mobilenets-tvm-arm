@@ -30,7 +30,7 @@ def get_top5(all_probs):
   sorted_probs = sorted(probs_with_classes, key = lambda pair: pair[0], reverse=True)
   return sorted_probs[0:5]
 
-def run_case(model, dtype, image):
+def run_case(dtype, image):
     # Check image
     import os
     import json
@@ -96,50 +96,33 @@ def run_case(model, dtype, image):
     timers['execution_time_transform_image']=time.time()-dt
 
     # load model
-    if model == 'vgg16':
-        net, params = nnvm.testing.vgg.get_workload(num_layers=16,
-            batch_size=1, image_shape=image_shape, dtype=dtype)
-    elif model == 'resnet18':
-#        net, params = nnvm.testing.resnet.get_workload(num_layers=18,
-#            batch_size=1, image_shape=image_shape, dtype=dtype)
-         from mxnet.gluon.model_zoo.vision import get_model
-         from mxnet.gluon.utils import download
+    from mxnet.gluon.model_zoo.vision import get_model
+    from mxnet.gluon.utils import download
 
-         block = get_model('resnet18_v1', pretrained=True)
+    model_path=os.environ['CK_ENV_MODEL_MXNET']
+    model_id=os.environ['MXNET_MODEL_ID']
+    block = get_model(model_id, pretrained=True, root=model_path)
 
-         # We support MXNet static graph(symbol) and HybridBlock in mxnet.gluon
-         net, params = nnvm.frontend.from_mxnet(block)
-         # we want a probability so add a softmax operator
-         net = nnvm.sym.softmax(net)
-    elif model == 'mobilenet':
-        net, params = nnvm.testing.mobilenet.get_workload(
-            batch_size=1, image_shape=image_shape, dtype=dtype)
-    else:
-        raise ValueError('no benchmark prepared for {}.'.format(model))
+    # We support MXNet static graph(symbol) and HybridBlock in mxnet.gluon
+    net, params = nnvm.frontend.from_mxnet(block)
+    # we want a probability so add a softmax operator
+    net = nnvm.sym.softmax(net)
 
     # compile
     opt_level = 2 if dtype == 'float32' else 1
     with nnvm.compiler.build_config(opt_level=opt_level):
         graph, lib, params = nnvm.compiler.build(
             net, tvm.target.mali(), shape={"data": data_shape}, params=params,
-            dtype=dtype, target_host=args.target_host)
+            dtype=dtype, target_host=None)
 
     # upload model to remote device
     tmp = util.tempdir()
     lib_fname = tmp.relpath('net.tar')
     lib.export_library(lib_fname)
 
-    if args.host is not None:
-        remote = rpc.connect(args.host, args.port)
-        remote.upload(lib_fname)
-
-        ctx = remote.cl(0)
-        rlib = remote.load_module('net.tar')
-        rparams = {k: tvm.nd.array(v, ctx) for k, v in params.items()}
-    else:
-        ctx = tvm.cl(0)
-        rlib = lib
-        rparams = params
+    ctx = tvm.cl(0)
+    rlib = lib
+    rparams = params
 
     # create graph runtime
     dt=time.time()
@@ -270,14 +253,6 @@ def run_case(model, dtype, image):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-#    parser.add_argument('--model', type=str, required=True, choices=['vgg16', 'resnet18', 'mobilenet', 'all'],
-#                        help="The model type.")
-    parser.add_argument('--model', type=str, required=False, choices=['vgg16', 'resnet18', 'mobilenet', 'all'],
-                        help="The model type.", default='resnet18')
-    parser.add_argument('--dtype', type=str, default='float32', choices=['float16', 'float32'])
-    parser.add_argument('--host', type=str, help="The host address of your arm device.", default=None)
-    parser.add_argument('--port', type=int, help="The port number of your arm device", default=None)
-    parser.add_argument('--target-host', type=str, help="The compilation target of host device.", default=None)
     parser.add_argument('--image', type=str, help="Path to JPEG image.", default=None)
     args = parser.parse_args()
 
@@ -290,11 +265,6 @@ if __name__ == '__main__':
     data_shape = (batch_size,) + image_shape
     out_shape = (batch_size, num_classes)
 
-    if args.model == 'all': # test all
-        for model in ['vgg16', 'resnet18', 'mobilenet']:
-            for dtype in ['float32', 'float16']:
-                run_case(model, dtype, args.image)
-                time.sleep(10)
+    dtype='float32'
 
-    else:  # test single
-        run_case(args.model, args.dtype, args.image)
+    run_case(dtype, args.image)
