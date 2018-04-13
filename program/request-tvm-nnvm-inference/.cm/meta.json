@@ -10,6 +10,65 @@
   "process_in_tmp": "yes", 
   "program": "yes", 
   "run_cmds": {
+    "classify": {
+      "dataset_tags": [
+        "image", 
+        "jpeg", 
+        "dataset"
+      ], 
+      "run_deps": {
+        "lib-mxnet": {
+          "local": "yes",
+          "name": "MXNet library",
+          "no_tags": "vsrc",
+          "skip_pruning_by_other_deps": "yes",
+          "sort": 10,
+          "tags": "lib,mxnet,vcpu"
+        }
+      }, 
+      "ignore_return_code": "no", 
+      "run_time": {
+        "fine_grain_timer_file": "tmp-ck-timer.json", 
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../classify.py --image=$#dataset_path#$$#dataset_filename#$",
+        "run_output_files": [
+          "tmp-ck-timer.json"
+        ]
+      }
+    },
+    "test": {
+      "ignore_return_code": "no", 
+      "run_deps": {
+        "lib-mxnet": {
+          "local": "yes",
+          "name": "MXNet library",
+          "no_tags": "vsrc",
+          "skip_pruning_by_other_deps": "yes",
+          "sort": 10,
+          "tags": "lib,mxnet,vcpu"
+        },
+        "dataset-imagenet-val": {
+          "force_target_as_host": "yes", 
+          "local": "yes", 
+          "name": "ImageNet dataset (val)", 
+          "sort": 60, 
+          "tags": "dataset,imagenet,aux"
+        }, 
+        "dataset-imagenet-aux": {
+          "force_target_as_host": "yes", 
+          "local": "yes", 
+          "name": "ImageNet dataset (aux)", 
+          "sort": 70, 
+          "tags": "dataset,imagenet,val"
+        } 
+      }, 
+      "run_time": {
+        "fine_grain_timer_file": "tmp-ck-timer.json", 
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../classify.py",
+        "run_output_files": [
+          "tmp-ck-timer.json"
+        ]
+      } 
+    },
     "all": {
       "ignore_return_code": "no", 
       "run_time": {

@@ -1,0 +1,9 @@
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float32	cost: 1.67973
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float16	cost: 0.990407
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float32	cost: 1.65574
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float32	cost: 1.6511
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float16	cost: 0.976307
+backend: ARMComputeLib-mali	model: vgg16	conv_method: direct	dtype: float32	cost: 3.99093
+backend: ARMComputeLib-mali	model: vgg16	conv_method: direct	dtype: float16	cost: 1.61435
+backend: ARMComputeLib-mali	model: mobilenet	conv_method: gemm	dtype: float32	cost: 0.172009
+backend: ARMComputeLib-mali	model: mobilenet	conv_method: direct	dtype: float32	cost: 0.174635
