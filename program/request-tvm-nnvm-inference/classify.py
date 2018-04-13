@@ -158,7 +158,7 @@ def run_case(model, dtype, image):
     import random
     random.shuffle(files)
 
-    if os.path.isfile('aggregate-ck-timer.json'):
+    if len(files)>1 and os.path.isfile('aggregate-ck-timer.json'):
        x=json.load(open('aggregate-ck-timer.json'))
 
        if 'total_images' in x:

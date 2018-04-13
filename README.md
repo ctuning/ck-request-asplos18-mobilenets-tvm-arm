@@ -38,9 +38,9 @@ We use the standard [Artifact Description check-list](http://ctuning.org/ae/subm
 ```
 
 ```
-# pip install numpy scipy decorator
+# pip install numpy scipy decorator matplotlib
 or
-# pip3 install numpy scipy decorator
+# pip3 install numpy scipy decorator matplotlib
 ```
 
 
