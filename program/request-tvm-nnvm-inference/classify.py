@@ -166,13 +166,18 @@ def run_case(dtype, image):
         module.set_input('data', tvm.nd.array(img.astype(dtype)))
         module.set_input(**rparams)
 
+        # perform some warm up runs
+        # print("warm up..")
+        warm_up_timer = module.module.time_evaluator("run", ctx, 1)
+        warm_up_timer()
+
         # execute
         print ('')
         print ("run ("+str(STAT_REPEAT)+" statistical repetitions)")
         dt=time.time()
         timer = module.module.time_evaluator("run", ctx, number=STAT_REPEAT)
-        timers['execution_time_classify']=(time.time()-dt)/STAT_REPEAT
         tcost = timer()
+        timers['execution_time_classify']=(time.time()-dt)/STAT_REPEAT
 
         # get outputs
         tvm_output = module.get_output(
