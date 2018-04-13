@@ -52,7 +52,9 @@
     "linux"
   ], 
   "print_files_after_run": [
-    "tmp-ck-output.json"
+    "tmp-ck-output.json",
+    "tmp-stdout.tmp",
+    "tmp-stderr.tmp"
   ], 
   "process_in_tmp": "yes", 
   "program": "yes", 
