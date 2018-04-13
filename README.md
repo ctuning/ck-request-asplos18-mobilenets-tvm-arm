@@ -153,7 +153,7 @@ $ ck compile program:request-armcl-inference
 ```
 
 ``` 
-$ ck run program:request-armcl-inference  --cmd_key=all
+$ ck run program:request-mxnet-inference  --cmd_key=all
 ```
 
 ### MXNet with OpenBLAS client
