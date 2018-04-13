@@ -29,6 +29,8 @@ We use the standard [Artifact Description check-list](http://ctuning.org/ae/subm
 
 ## Installation 
 
+**NB:** The `#` sign means `sudo`.
+
 ### Install global prerequisites (Ubuntu)
 
 ```
@@ -36,9 +38,9 @@ We use the standard [Artifact Description check-list](http://ctuning.org/ae/subm
 ```
 
 ```
-# pip install scipy
+# pip install numpy scipy decorator
 or
-# pip3 install scipy
+# pip3 install numpy scipy decorator
 ```
 
 
@@ -131,7 +133,7 @@ $ ck list package:lib-armcl-opencl-*
 ### MXNet with OpenBLAS
 
 ```
-$ ck install package:lib-mxnet-master-cpu 
+$ ck install package:lib-mxnet-master-cpu --env.USE_F16C=0
 ```
 
 ### NNVM / TVM 
