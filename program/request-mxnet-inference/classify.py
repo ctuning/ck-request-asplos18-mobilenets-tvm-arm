@@ -188,13 +188,13 @@ def run_case(dtype, image):
         top1 = np.argmax(prob.asnumpy())
 
         print ('')
-        print('TVM prediction Top1:', top1, synset[top1])
+        print('MXNet prediction Top1:', top1, synset[top1])
 
         top5=[]
         atop5 = get_top5(prob.asnumpy()[0])
 
         print ('')
-        print('TVM prediction Top5:')
+        print('MXNet prediction Top5:')
         for q in atop5:
             x=q[1]
             y=synset[x]
