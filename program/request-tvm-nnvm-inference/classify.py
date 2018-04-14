@@ -4,6 +4,7 @@ Updated by Grigori Fursin to support real image classification
 """
 
 import time
+import os
 import argparse
 import numpy as np
 import tvm
@@ -106,6 +107,10 @@ def run_case(dtype, image):
     net, params = nnvm.frontend.from_mxnet(block)
     # we want a probability so add a softmax operator
     net = nnvm.sym.softmax(net)
+
+    # convert to wanted dtype (https://github.com/merrymercy/tvm-mali/issues/3)
+    if dtype!='float32':
+       params = {k: tvm.nd.array(v.asnumpy().astype(dtype)) for k, v in params.items()}
 
     # compile
     opt_level = 2 if dtype == 'float32' else 1
@@ -270,5 +275,7 @@ if __name__ == '__main__':
     out_shape = (batch_size, num_classes)
 
     dtype='float32'
+    if os.environ.get('CK_TVM_DTYPE','')!='':
+       dtype=os.environ['CK_TVM_DTYPE']
 
     run_case(dtype, args.image)
