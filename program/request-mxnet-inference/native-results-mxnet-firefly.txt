@@ -1,3 +1,0 @@
-backend: MXNet+OpenBLAS	model: resnet18	dtype: float32	cost:0.4145
-backend: MXNet+OpenBLAS	model: mobilenet	dtype: float32	cost:0.3408
-backend: MXNet+OpenBLAS	model: vgg16	dtype: float32	cost:3.1244

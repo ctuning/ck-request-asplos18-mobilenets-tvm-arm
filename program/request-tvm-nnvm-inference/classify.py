@@ -1,7 +1,6 @@
 """
 Benchmark inference speed on ImageNet
-Example (run on Firefly RK3399):
-python mali_imagenet_bench.py --target-host 'llvm -target=aarch64-linux-gnu' --host 192.168.0.100 --port 9090 --model mobilenet
+Updated by Grigori Fursin to support real image classification
 """
 
 import time

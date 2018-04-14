@@ -1,6 +1,0 @@
-backend: TVM-mali	model: vgg16	dtype: float32	cost:0.9599
-backend: TVM-mali	model: vgg16	dtype: float16	cost:0.5688
-backend: TVM-mali	model: resnet18	dtype: float32	cost:0.1748
-backend: TVM-mali	model: resnet18	dtype: float16	cost:0.1122
-backend: TVM-mali	model: mobilenet	dtype: float32	cost:0.0814
-backend: TVM-mali	model: mobilenet	dtype: float16	cost:0.0525
