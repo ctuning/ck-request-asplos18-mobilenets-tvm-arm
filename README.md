@@ -24,6 +24,7 @@ We use the standard [Artifact Description check-list](http://ctuning.org/ae/subm
 * **How much time is needed to prepare workflow (approximately)?** 
 * **How much time is needed to complete experiments (approximately)?**
 * **Collective Knowledge workflow framework used?** Yes
+* **Original artifact:** https://github.com/merrymercy/tvm-mali
 * **Publicly available?:** Yes
 * **Experimental results:** https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm
 
@@ -142,37 +143,90 @@ $ ck install package:lib-mxnet-master-cpu --env.USE_F16C=0
 $ ck install package:lib-nnvm-tvm-master-opencl 
 ```
 
-## Run Programs 
+## Original benchmarking (no real classification)
 
-
-### ARM Compute Library client
+### ARM Compute Library client (OpenCL)
 This program must be first compiled
 
 ```
 $ ck compile program:request-armcl-inference 
+$ ck run program:request-armcl-inference --cmd_key=all
 ```
+
+We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
+
+```
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float32	cost: 1.6511
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float16	cost: 0.976307
+backend: ARMComputeLib-mali	model: vgg16	conv_method: direct	dtype: float32	cost: 3.99093
+backend: ARMComputeLib-mali	model: vgg16	conv_method: direct	dtype: float16	cost: 1.61435
+backend: ARMComputeLib-mali	model: mobilenet	conv_method: gemm	dtype: float32	cost: 0.172009
+backend: ARMComputeLib-mali	model: mobilenet	conv_method: direct	dtype: float32	cost: 0.174635
+```
+
+### MXNet with OpenBLAS client (CPU)
 
 ``` 
 $ ck run program:request-mxnet-inference  --cmd_key=all
 ```
 
-### MXNet with OpenBLAS client
+We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
 
-``` 
-$ ck run program:request-armcl-inference  --cmd_key=all
+```
+backend: MXNet+OpenBLAS	model: resnet18	dtype: float32	cost:0.4145
+backend: MXNet+OpenBLAS	model: mobilenet	dtype: float32	cost:0.3408
+backend: MXNet+OpenBLAS	model: vgg16	dtype: float32	cost:3.1244
 ```
 
-### NNVM/TVM client
+### NNVM/TVM client (OpenCL)
 
 ```
 $ ck run program:request-tvm-nnvm-inference  --cmd_key=all 
 ```
 
-### Other options 
+We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
+
+```
+backend: TVM-mali	model: vgg16	dtype: float32	cost:0.9599
+backend: TVM-mali	model: vgg16	dtype: float16	cost:0.5688
+backend: TVM-mali	model: resnet18	dtype: float32	cost:0.1748
+backend: TVM-mali	model: resnet18	dtype: float16	cost:0.1122
+backend: TVM-mali	model: mobilenet	dtype: float32	cost:0.0814
+backend: TVM-mali	model: mobilenet	dtype: float16	cost:0.0525
+```
+
+## Real classification (time and accuracy)
+
+Original benchmarking in this ReQuEST submission did not include real classification. 
+We therefore also provided real image classification in each above CK program entry.
+
+### ARM Compute Library client (OpenCL)
+
+
+
+
+
+### MXNet with OpenBLAS client (CPU)
+
+``` 
+$ ck run program:request-mxnet-inference  --cmd_key=classify
+```
+
+### NNVM/TVM client (OpenCL)
+
+
+```
+$ ck run program:request-tvm-nnvm-inference  --cmd_key=classify 
+```
+
+
+## Other options 
 For each program, ```help``` commands provide a description of possible options to pass to ```ck run program: * program_name *```
 
 ``` 
 ck run program: * program_name * --cmd_key=help 
 ```
 
-## FAQ 
+
+
+## Run Programs with real classification 
