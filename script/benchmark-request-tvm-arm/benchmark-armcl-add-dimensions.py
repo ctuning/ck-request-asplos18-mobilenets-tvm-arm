@@ -42,7 +42,7 @@ def do(i):
 
         dd['meta']['platform_species']='embedded' # embedded vs server (maybe other classifications such as edge)
 
-        dd['meta']['platform_peak_power']=5.0 #Watts
+        dd['meta']['platform_peak_power']=6.05 #Watts http://opensource.rock-chips.com/images/6/60/Rockchip_RK3399_Datasheet_V1.6-20170301.pdf last page
         dd['meta']['platform_price']=149 # $, http://shop.t-firefly.com/goods.php?id=45
         dd['meta']['platform_price_date']='20180416' # date
 
