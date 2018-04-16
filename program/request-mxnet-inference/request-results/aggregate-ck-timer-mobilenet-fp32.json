@@ -1,0 +1,11 @@
+{
+  "correct_images_top5": 43867,
+  "execution_time_transform_image": 0.00460052490234375,
+  "total_images": 50000,
+  "execution_time": 0.018018007278442383,
+  "accuracy_top5": 0.87734,
+  "correct_images_top1": 33347,
+  "execution_time_classify": 0.018018007278442383,
+  "execution_time_load_image": 0.039475202560424805,
+  "accuracy_top1": 0.66694
+}
