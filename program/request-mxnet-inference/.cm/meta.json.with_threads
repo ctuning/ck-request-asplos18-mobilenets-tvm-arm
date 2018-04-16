@@ -129,6 +129,7 @@
      "tmp-stderr.tmp"
   ],
   "run_vars": {
+    "OMP_NUM_THREADS": 6,
     "CK_BATCH_SIZE": 1, 
     "CK_MXNET_MODEL": "mobilenet" 
   },

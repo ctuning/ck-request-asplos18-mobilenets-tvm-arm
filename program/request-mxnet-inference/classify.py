@@ -120,6 +120,7 @@ def run_case(dtype, image):
     model_path=os.environ['CK_ENV_MODEL_MXNET']
     model_id=os.environ['MXNET_MODEL_ID']
 
+    dt=time.time()
     block = get_model(model_id, pretrained=True, root=model_path)
 
     sym, arg_params, aux_params = block2symbol(block)
@@ -133,6 +134,7 @@ def run_case(dtype, image):
     mod.bind(data_shapes = eval_iter.provide_data, label_shapes = eval_iter.provide_label)
 
     mod.set_params(arg_params, aux_params)
+    timers['execution_time_model_init']=time.time()-dt
 
     total_images=0
     correct_images_top1=0
@@ -169,29 +171,31 @@ def run_case(dtype, image):
         img = transform_image(image)
 
         # set inputs
+        dt=time.time()
         eval_iter = mx.io.NDArrayIter(img, np.array([0.0]), batch_size, shuffle=False)
+        timers['execution_time_mx_io']=time.time()-dt
 
         # perform some warm up runs
-        # print("warm up..")
-#        mod.predict(eval_iter)
+        print("warm up..")
+        mod.predict(eval_iter)
 
         # execute
         print ('')
         print ("run ("+str(STAT_REPEAT)+" statistical repetitions)")
         dt=time.time()
         for repeat in range(0, STAT_REPEAT):
-            prob = mod.predict(eval_iter)
+            prob = mod.predict(eval_iter).asnumpy()
         tcost=(time.time()-dt)/STAT_REPEAT
 
         timers['execution_time_classify']=tcost
 
-        top1 = np.argmax(prob.asnumpy())
+        top1 = np.argmax(prob)
 
         print ('')
         print('MXNet prediction Top1:', top1, synset[top1])
 
         top5=[]
-        atop5 = get_top5(prob.asnumpy()[0])
+        atop5 = get_top5(prob[0])
 
         print ('')
         print('MXNet prediction Top5:')

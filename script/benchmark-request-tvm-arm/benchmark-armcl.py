@@ -87,11 +87,11 @@ def do(i, arg):
         batch_count = 1
 
     # Restrict accuracy testing to the ReQuEST fork of ArmCL and direct convolution for large datasets.
-    if arg.accuracy and batch_count > 500:
-        use_lib_tags = [ 'request-d8f69c13' ]
-        ch['start'] = 1
-    else:
-        use_lib_tags = [ 'request-d8f69c13', '18.03-e40997bb', '18.01-f45d5a9b', '17.12-48bc34ea' ]
+#    if arg.accuracy and batch_count > 500:
+#        use_lib_tags = [ 'request-d8f69c13' ]
+#        ch['start'] = 1
+#    else:
+#        use_lib_tags = [ 'request-d8f69c13', '18.03-e40997bb', '18.01-f45d5a9b', '17.12-48bc34ea' ]
 
     ii={'action':'show',
         'module_uoa':'env',
@@ -223,7 +223,7 @@ def do(i, arg):
         lib_name=r['data_name']
         lib_tags=r['dict']['customize']['version']
         # Skip some libs with "in [..]" or "not in [..]".
-        if arg.accuracy and lib_tags not in use_lib_tags: continue
+#        if arg.accuracy and lib_tags not in use_lib_tags: continue
         skip_compile='no'
         # For each MobileNets model.*************************************************
         for model_uoa in udepm:
