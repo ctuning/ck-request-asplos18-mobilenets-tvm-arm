@@ -233,6 +233,7 @@ def do(i, arg):
                 'data_uoa':model_uoa}
             r=ck.access(ii)
             if r['return']>0: return r
+
             model_name=r['data_name']
             alpha = float(r['dict']['env']['CK_ENV_MOBILENET_MULTIPLIER'])
             rho = int(r['dict']['env']['CK_ENV_MOBILENET_RESOLUTION'])
