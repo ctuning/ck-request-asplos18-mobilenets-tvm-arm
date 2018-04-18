@@ -173,7 +173,7 @@ backend: ARMComputeLib-mali	model: mobilenet	conv_method: gemm	dtype: float32	co
 backend: ARMComputeLib-mali	model: mobilenet	conv_method: direct	dtype: float32	cost: 0.174635
 ```
 
-*(CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-armcl-inference/.cm/meta.json))*
+*Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-armcl-inference/.cm/meta.json)*
 
 ### MXNet with OpenBLAS client (CPU)
 
@@ -191,6 +191,8 @@ backend: MXNet+OpenBLAS	model: resnet18	dtype: float32	cost:0.4145
 backend: MXNet+OpenBLAS	model: mobilenet	dtype: float32	cost:0.3408
 backend: MXNet+OpenBLAS	model: vgg16	dtype: float32	cost:3.1244
 ```
+
+*Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-mxnet-inference/.cm/meta.json) and [code](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-mxnet-inference/mxnet_test.py)*
 
 ### NNVM/TVM client (OpenCL)
 
@@ -212,29 +214,75 @@ backend: TVM-mali	model: mobilenet	dtype: float32	cost:0.0814
 backend: TVM-mali	model: mobilenet	dtype: float16	cost:0.0525
 ```
 
+*Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-tvm-nnvm-inference/.cm/meta.json) and [code](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-tvm-nnvm-inference/mali_imagenet_bench.py)*
 
 ## Real classification (time and accuracy)
 
 Original benchmarking clients did not include real classification in this ReQuEST submission. 
 We therefore provided code for real image classification for each of the above CK programs.
+This is also required to calculate model accuracy on all (or a subset of) ImageNet data set.
 
 ### MXNet with OpenBLAS client (CPU)
 
+You can benchmark classification using MXNet with OpenBLAS as following:
+
 ``` 
-$ ck run program:request-mxnet-inference  --cmd_key=classify
+$ ck benchmark program:request-mxnet-inference --cmd_key=classify
 ```
+
+You can also install ImageNet data sets for model accuracy validation as following:
+```
+$ ck install package:imagenet-2012-val
+or
+$ ck install package:imagenet-2012-val-min-resized
+
+$ ck install package:imagenet-2012-aux
+```
+
+You can then run accuracy test as following:
+``` 
+$ ck run program:request-mxnet-inference --cmd_key=test --env.STAT_REPEAT=1
+```
+
+You can find accuracy results for several models [here](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/program/request-mxnet-inference/request-results).
+
+*Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-mxnet-inference/.cm/meta.json) and [code](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-mxnet-inference/classify.py)*
 
 ### NNVM/TVM client (OpenCL)
 
+You can benchmark classification and test accuracy using TVM/NNVM as following:
+```
+$ ck benchmark program:request-tvm-nnvm-inference --cmd_key=classify
+$ ck run program:request-tvm-nnvm-inference --cmd_key=test --env.STAT_REPEAT=1
+```
+You can find accuracy results for several models [here](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/program/request-tvm-nnvm-inference/request-results).
 
-```
-$ ck run program:request-tvm-nnvm-inference  --cmd_key=classify 
-```
+*Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-tvm-nnvm-inference/.cm/meta.json) and [code](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-tvm-nnvm-inference/classify.py)*
 
 ### ARM Compute Library client (OpenCL)
 
+ReQuEST promotes reusability of AI/ML workflows, packages and artifacts using CK framework. 
+Since image classification using ArmCL [was already implemented and shared](https://github.com/dividiti/ck-request-asplos18-mobilenets-armcl-opencl) 
+using CK format and added to the ReQuEST scoreboard, we can simply reuse this workflow and compare against public results!
 
+Please, follow this [ReadME](https://github.com/dividiti/ck-request-asplos18-mobilenets-armcl-opencl) 
+to reproduce ArmCL classification results on Firefly-RK3399!
 
+## Validated results
 
+Validated experimental results were recorded and processed using the 
+[following scripts](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/script/benchmark-request-tvm-arm) 
+(we plan to automate it further for the future ReQuEST editions):
+```
+$ ck find script:benchmark-request-tvm-arm
+```
 
-## Run Programs with real classification 
+They are now available in this [CK repo](https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm) 
+and on the public [ReQuEST scoreboard](http://cKnowledge.org/request-results).
+
+## Reviewers
+
+This workflow was converted to CK and validated by the following reviewers:
+* [Flavio Vella](http://dividiti.com)
+* [Anton Lokhmotov](http://dividiti.com)
+* [Grigori Fursin](http://fursin.net/research.html)
