@@ -173,7 +173,7 @@ backend: ARMComputeLib-mali	model: mobilenet	conv_method: gemm	dtype: float32	co
 backend: ARMComputeLib-mali	model: mobilenet	conv_method: direct	dtype: float32	cost: 0.174635
 ```
 
-''(CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-armcl-inference/.cm/meta.json))''
+*(CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-armcl-inference/.cm/meta.json))*
 
 ### MXNet with OpenBLAS client (CPU)
 
