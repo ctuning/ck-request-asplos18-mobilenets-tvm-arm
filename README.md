@@ -20,9 +20,9 @@ We use the standard [Artifact Description check-list](http://ctuning.org/ae/subm
 * **Metrics:** total execution time; top1/top5 accuracy over some (all) images from the data set
 * **Output:** classification result; execution time; accuracy
 * **Experiments:** CK command line
-* **How much disk space required (approximately)?** 
-* **How much time is needed to prepare workflow (approximately)?** 
-* **How much time is needed to complete experiments (approximately)?**
+* **How much disk space required (approximately)?** ~4GB
+* **How much time is needed to prepare workflow (approximately)?** several hours (mainly native compilation of packages)
+* **How much time is needed to complete experiments (approximately)?** from several hours for performance validation to several days for ImageNet accuracy validation (50000 images)
 * **Collective Knowledge workflow framework used?** Yes
 * **Original artifact:** https://github.com/merrymercy/tvm-mali
 * **Publicly available?:** Yes
@@ -101,19 +101,16 @@ $ ck list package:lib-openblas*
 $ ck install package:lib-lapack-3.4.2
 ```
 
-### Install or detect llvm/clang compiler
+### Install or detect llvm/clang compiler v4+
 
 ```
-$ ck install package:compiler-llvm-4.0.0-universal
+$ ck install package --tags=compiler,llvm
 ```
 
-On * Firefly RK-3399 * install **llvm** via apt and the detect it via CK.
+Though above is the suggested method, you can also install **llvm** via apt and the detect it via CK.
 
 ```
-$ sudo apt-get install llvm-4.0 clang-4.0
-```
-
-```
+# apt-get install llvm-4.0 clang-4.0
 $ ck detect soft:compiler.llvm 
 ```
 
@@ -125,10 +122,11 @@ $ ck detect soft:compiler.llvm
 $ ck install package:lib-armcl-opencl-17.12  --env.USE_GRAPH=ON --env.USE_NEON=ON --env.USE_EMBEDDED_KERNELS=ON 
 ```
 
-To check other versions available via CK 
+To check/install other versions available via CK 
 
 ```
 $ ck list package:lib-armcl-opencl-* 
+$ ck install package --tags=lib,armcl env.USE_GRAPH=ON --env.USE_NEON=ON --env.USE_EMBEDDED_KERNELS=ON 
 ```
 
 ### MXNet with OpenBLAS
@@ -150,7 +148,18 @@ This program must be first compiled
 
 ```
 $ ck compile program:request-armcl-inference 
+```
+
+and then executed as following:
+```
 $ ck run program:request-armcl-inference --cmd_key=all
+```
+
+You can also use "ck benchmark" command to automatically set CPU/GPU frequency to max, 
+compile program, run it N times and perform statistical analysis on empirical characteristics:
+
+```
+$ ck benchmark program:request-armcl-inference --cmd_key=all
 ```
 
 We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
@@ -164,10 +173,15 @@ backend: ARMComputeLib-mali	model: mobilenet	conv_method: gemm	dtype: float32	co
 backend: ARMComputeLib-mali	model: mobilenet	conv_method: direct	dtype: float32	cost: 0.174635
 ```
 
+''(CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-armcl-inference/.cm/meta.json))''
+
 ### MXNet with OpenBLAS client (CPU)
 
 ``` 
 $ ck run program:request-mxnet-inference  --cmd_key=all
+ or
+$ ck benchmark program:request-mxnet-inference  --cmd_key=all
+
 ```
 
 We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
@@ -182,6 +196,9 @@ backend: MXNet+OpenBLAS	model: vgg16	dtype: float32	cost:3.1244
 
 ```
 $ ck run program:request-tvm-nnvm-inference  --cmd_key=all 
+ or
+$ ck benchmark program:request-tvm-nnvm-inference  --cmd_key=all 
+
 ```
 
 We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
@@ -195,16 +212,11 @@ backend: TVM-mali	model: mobilenet	dtype: float32	cost:0.0814
 backend: TVM-mali	model: mobilenet	dtype: float16	cost:0.0525
 ```
 
+
 ## Real classification (time and accuracy)
 
-Original benchmarking in this ReQuEST submission did not include real classification. 
-We therefore also provided real image classification in each above CK program entry.
-
-### ARM Compute Library client (OpenCL)
-
-
-
-
+Original benchmarking clients did not include real classification in this ReQuEST submission. 
+We therefore provided code for real image classification for each of the above CK programs.
 
 ### MXNet with OpenBLAS client (CPU)
 
@@ -219,13 +231,9 @@ $ ck run program:request-mxnet-inference  --cmd_key=classify
 $ ck run program:request-tvm-nnvm-inference  --cmd_key=classify 
 ```
 
+### ARM Compute Library client (OpenCL)
 
-## Other options 
-For each program, ```help``` commands provide a description of possible options to pass to ```ck run program: * program_name *```
 
-``` 
-ck run program: * program_name * --cmd_key=help 
-```
 
 
 
