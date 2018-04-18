@@ -244,7 +244,7 @@ You can then run accuracy test as following:
 $ ck run program:request-mxnet-inference --cmd_key=test --env.STAT_REPEAT=1
 ```
 
-You can find accuracy results for several models [here](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/program/request-mxnet-inference/request-results).
+You can find raw accuracy results (top1/top5) for several models [here](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/program/request-mxnet-inference/request-results).
 
 *Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-mxnet-inference/.cm/meta.json) and [code](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-mxnet-inference/classify.py)*
 
@@ -255,7 +255,7 @@ You can benchmark classification and test accuracy using TVM/NNVM as following:
 $ ck benchmark program:request-tvm-nnvm-inference --cmd_key=classify
 $ ck run program:request-tvm-nnvm-inference --cmd_key=test --env.STAT_REPEAT=1
 ```
-You can find accuracy results for several models [here](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/program/request-tvm-nnvm-inference/request-results).
+You can find raw accuracy results (top1/top5) for several models [here](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/tree/master/program/request-tvm-nnvm-inference/request-results).
 
 *Extra info: CK program [meta](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-tvm-nnvm-inference/.cm/meta.json) and [code](https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm/blob/master/program/request-tvm-nnvm-inference/classify.py)*
 
