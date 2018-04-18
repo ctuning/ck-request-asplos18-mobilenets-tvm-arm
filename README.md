@@ -285,4 +285,5 @@ and on the public [ReQuEST scoreboard](http://cKnowledge.org/request-results).
 This workflow was converted to CK and validated by the following reviewers:
 * [Flavio Vella](http://dividiti.com)
 * [Anton Lokhmotov](http://dividiti.com)
+* [Nikolay Chunosov](http://dividiti.com)
 * [Grigori Fursin](http://fursin.net/research.html)
