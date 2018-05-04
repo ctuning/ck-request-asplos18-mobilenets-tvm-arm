@@ -27,6 +27,7 @@ We use the standard [Artifact Description check-list](http://ctuning.org/ae/subm
 * **Original artifact:** https://github.com/merrymercy/tvm-mali
 * **Publicly available?:** Yes
 * **Experimental results:** https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm
+* **Scoreboard:** http://cKnowledge.org/request-results
 
 ## Installation 
 
