@@ -45,10 +45,25 @@ or
 # pip3 install numpy scipy decorator matplotlib
 ```
 
+### Minimal CK installation
 
-### Install Collective Knowledge
+The minimal installation requires:
+
+* Python 2.7 or 3.3+ (limitation is mainly due to unitests)
+* Git command line client.
+
+You can install CK in your local user space as following:
+
 ```
-# pip install ck
+$ git clone http://github.com/ctuning/ck
+$ export PATH=$PWD/ck/bin:$PATH
+$ export PYTHONPATH=$PWD/ck:$PYTHONPATH
+```
+
+You can also install CK via PIP with sudo to avoid setting up environment variables yourself:
+
+```
+$ sudo pip install ck
 ```
 
 ### Install this CK repository with all dependencies (other CK repos to reuse artifacts)
