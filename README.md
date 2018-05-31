@@ -1,4 +1,6 @@
-# Collective Knowledge workflow for image classification submitted to [ReQuEST at ASPLOS'18](http://cknowledge.org/request-cfp-asplos2018.html)
+[![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-powered-by-ck.png)](https://github.com/ctuning/ck)
+
+# Collective Knowledge workflow for image classification submitted to the [ReQuEST tournament at ASPLOS'18](http://cknowledge.org/request-cfp-asplos2018.html)
 
 * **Title:** Optimizing Deep Learning Workloads on ARM GPU with TVM
 * **Authors:** Lianmin Zheng, Tianqi Chen
@@ -52,7 +54,7 @@ The minimal installation requires:
 * Python 2.7 or 3.3+ (limitation is mainly due to unitests)
 * Git command line client.
 
-You can install CK in your local user space as following:
+You can install CK in your local user space as follows:
 
 ```
 $ git clone http://github.com/ctuning/ck
@@ -166,7 +168,7 @@ This program must be first compiled
 $ ck compile program:request-armcl-inference 
 ```
 
-and then executed as following:
+and then executed as follows:
 ```
 $ ck run program:request-armcl-inference --cmd_key=all
 ```
@@ -240,13 +242,13 @@ This is also required to calculate model accuracy on all (or a subset of) ImageN
 
 ### MXNet with OpenBLAS client (CPU)
 
-You can benchmark classification using MXNet with OpenBLAS as following:
+You can benchmark classification using MXNet with OpenBLAS as follows:
 
 ``` 
 $ ck benchmark program:request-mxnet-inference --cmd_key=classify
 ```
 
-You can also install ImageNet data sets for model accuracy validation as following:
+You can also install ImageNet data sets for model accuracy validation as follows:
 ```
 $ ck install package:imagenet-2012-val
 or
@@ -255,7 +257,7 @@ $ ck install package:imagenet-2012-val-min-resized
 $ ck install package:imagenet-2012-aux
 ```
 
-You can then run accuracy test as following:
+You can then run accuracy test as follows:
 ``` 
 $ ck run program:request-mxnet-inference --cmd_key=test --env.STAT_REPEAT=1
 ```
@@ -266,7 +268,7 @@ You can find raw accuracy results (top1/top5) for several models [here](https://
 
 ### NNVM/TVM client (OpenCL)
 
-You can benchmark classification and test accuracy using TVM/NNVM as following:
+You can benchmark classification and test accuracy using TVM/NNVM as follows:
 ```
 $ ck benchmark program:request-tvm-nnvm-inference --cmd_key=classify
 $ ck run program:request-tvm-nnvm-inference --cmd_key=test --env.STAT_REPEAT=1
