@@ -337,4 +337,276 @@ of this artifact is to reproduce the performance comparison in Figure \ref{fig:e
 If the reviewer uses the same hardware, we expect the inference time costs in the output log file match the results in our plot.
 If other similar hardware is used, we expect the reviewer can observe a similar trend.
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Unified installation and evaluation for the ReQuEST scoreboard using Collective Knowledge framework}
+
+\subsubsection{Installation}
+
+**NB:** The `\#` sign means `sudo`.
+
+Install global prerequisites (Ubuntu)
+
+\begin{verbatim}
+# sudo apt-get install libtinfo-dev 
+\end{verbatim}
+
+\begin{verbatim}
+# pip install numpy scipy decorator matplotlib
+ or
+# pip3 install numpy scipy decorator matplotlib
+\end{verbatim}
+
+\textbf{Minimal CK installation}
+
+The minimal installation requires:
+
+\begin{packed_itemize}
+ \item Python 2.7 or 3.3+ (limitation is mainly due to unitests)
+ \item Git command line client.
+\end{packed_itemize}
+
+You can install CK in your local user space as follows:
+
+\begin{verbatim}
+$ git clone http://github.com/ctuning/ck
+$ export PATH=$PWD/ck/bin:$PATH
+$ export PYTHONPATH=$PWD/ck:$PYTHONPATH
+\end{verbatim}
+
+You can also install CK via PIP with sudo to avoid setting up environment variables yourself:
+
+\begin{verbatim}
+$ sudo pip install ck
+\end{verbatim}
+
+\textbf{Install this CK repository with all dependencies (other CK repos to reuse artifacts)}
+
+\begin{verbatim}
+$ ck pull repo:ck-request-asplos18-mobilenets-tvm-arm
+\end{verbatim}
+
+\textbf{Detect and test OpenCL driver}
+
+\begin{verbatim}
+$ ck detect platform.gpgpu --opencl 
+\end{verbatim}
+
+
+\textbf{Install libBLAS}
+
+\begin{verbatim}
+$ sudo apt-get install libblas*
+\end{verbatim}
+
+\textit{To detect and register in CK:}
+
+\begin{verbatim}
+ck detect soft:lib.blas
+\end{verbatim}
+
+\textit{To check the environment:}
+
+\begin{verbatim}
+$ ck show env --tags=blas,no-openblas
+\end{verbatim}
+
+A possible output:
+
+\begin{verbatim}
+cfe1e23a4472bb1d  linux-32  32 BLAS library api-3  32bits,blas,blas,cblas,host-os-linux-32,lib,
+                                                     no-openblas,target-os-linux-32,v0,v0.3
+\end{verbatim}
+
+\textbf{Install OpenBLAS}
+
+\begin{verbatim}
+$ ck install package:lib-openblas-0.2.18-universal
+\end{verbatim}
+
+If you want to test other openblas version:
+
+\begin{verbatim}
+$ ck list package:lib-openblas* 
+\end{verbatim}
+
+\textbf{Install LaPack}
+
+\begin{verbatim}
+$ ck install package:lib-lapack-3.4.2
+\end{verbatim}
+
+\textbf{Install or detect llvm/clang compiler v4+}
+
+\begin{verbatim}
+$ ck install package --tags=compiler,llvm
+\end{verbatim}
+
+Though above is the suggested method, you can also install **llvm** via apt and the detect it via CK.
+
+\begin{verbatim}
+# apt-get install llvm-4.0 clang-4.0
+$ ck detect soft:compiler.llvm 
+\end{verbatim}
+
+\subsubsection{Packages installation}
+
+\textbf{ARM Compute Library}
+
+\begin{verbatim}
+$ ck install package:lib-armcl-opencl-17.12  --env.USE_GRAPH=ON --env.USE_NEON=ON \
+    --env.USE_EMBEDDED_KERNELS=ON 
+\end{verbatim}
+
+To check/install other versions available via CK 
+
+\begin{verbatim}
+$ ck list package:lib-armcl-opencl-* 
+$ ck install package --tags=lib,armcl env.USE_GRAPH=ON --env.USE_NEON=ON \
+    --env.USE_EMBEDDED_KERNELS=ON 
+\end{verbatim}
+
+\textbf{MXNet with OpenBLAS}
+
+\begin{verbatim}
+$ ck install package:lib-mxnet-master-cpu --env.USE_F16C=0
+\end{verbatim}
+
+\textbf{NNVM / TVM}
+
+\begin{verbatim}
+$ ck install package:lib-nnvm-tvm-master-opencl 
+\end{verbatim}
+
+\subsubsection{Original benchmarking (no real classification)}
+
+\textbf{ARM Compute Library client (OpenCL)}
+
+This program must be first compiled
+
+\begin{verbatim}
+$ ck compile program:request-armcl-inference 
+\end{verbatim}
+
+and then executed as follows:
+
+\begin{verbatim}
+$ ck run program:request-armcl-inference --cmd_key=all
+\end{verbatim}
+
+You can also use "ck benchmark" command to automatically set CPU/GPU frequency to max, 
+compile program, run it N times and perform statistical analysis on empirical characteristics:
+
+\begin{verbatim}
+$ ck benchmark program:request-armcl-inference --cmd_key=all
+\end{verbatim}
+
+We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
+
+\begin{verbatim}
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float32	cost: 1.6511
+backend: ARMComputeLib-mali	model: vgg16	conv_method: gemm	dtype: float16	cost: 0.976307
+backend: ARMComputeLib-mali	model: vgg16	conv_method: direct	dtype: float32	cost: 3.99093
+backend: ARMComputeLib-mali	model: vgg16	conv_method: direct	dtype: float16	cost: 1.61435
+backend: ARMComputeLib-mali	model: mobilenet	conv_method: gemm	dtype: float32	cost: 0.172009
+backend: ARMComputeLib-mali	model: mobilenet	conv_method: direct	dtype: float32	cost: 0.174635
+\end{verbatim}
+
+\textbf{MXNet with OpenBLAS client (CPU)}
+
+\begin{verbatim} 
+$ ck run program:request-mxnet-inference  --cmd_key=all
+ or
+$ ck benchmark program:request-mxnet-inference  --cmd_key=all
+
+\end{verbatim}
+
+We validated results from the authors (\url{https://github.com/merrymercy/tvm-mali}):
+
+\begin{verbatim}
+backend: MXNet+OpenBLAS	model: resnet18	dtype: float32	cost:0.4145
+backend: MXNet+OpenBLAS	model: mobilenet	dtype: float32	cost:0.3408
+backend: MXNet+OpenBLAS	model: vgg16	dtype: float32	cost:3.1244
+\end{verbatim}
+
+\textbf{NNVM/TVM client (OpenCL)}
+
+\begin{verbatim}
+$ ck run program:request-tvm-nnvm-inference  --cmd_key=all 
+ or
+$ ck benchmark program:request-tvm-nnvm-inference  --cmd_key=all 
+
+\end{verbatim}
+
+We validated results from the [authors](https://github.com/merrymercy/tvm-mali):
+
+\begin{verbatim}
+backend: TVM-mali	model: vgg16	dtype: float32	cost:0.9599
+backend: TVM-mali	model: vgg16	dtype: float16	cost:0.5688
+backend: TVM-mali	model: resnet18	dtype: float32	cost:0.1748
+backend: TVM-mali	model: resnet18	dtype: float16	cost:0.1122
+backend: TVM-mali	model: mobilenet	dtype: float32	cost:0.0814
+backend: TVM-mali	model: mobilenet	dtype: float16	cost:0.0525
+\end{verbatim}
+
+\subsubsection{Real classification (time and accuracy)}
+
+Original benchmarking clients did not include real classification in this ReQuEST submission. 
+We therefore provided code for real image classification for each of the above CK programs.
+This is also required to calculate model accuracy on all (or a subset of) ImageNet data set.
+
+\textbf{MXNet with OpenBLAS client (CPU)}
+
+You can benchmark classification using MXNet with OpenBLAS as follows:
+
+\begin{verbatim} 
+$ ck benchmark program:request-mxnet-inference --cmd_key=classify
+\end{verbatim}
+
+You can also install ImageNet data sets for model accuracy validation as follows:
+
+\begin{verbatim}
+$ ck install package:imagenet-2012-val
+or
+$ ck install package:imagenet-2012-val-min-resized
+
+$ ck install package:imagenet-2012-aux
+\end{verbatim}
+
+You can then run accuracy test as follows:
+
+\begin{verbatim} 
+$ ck run program:request-mxnet-inference --cmd_key=test --env.STAT_REPEAT=1
+\end{verbatim}
+
+\textbf{NNVM/TVM client (OpenCL)}
+
+You can benchmark classification and test accuracy using TVM/NNVM as follows:
+
+\begin{verbatim}
+$ ck benchmark program:request-tvm-nnvm-inference --cmd_key=classify
+$ ck run program:request-tvm-nnvm-inference --cmd_key=test --env.STAT_REPEAT=1
+\end{verbatim}
+
+\textbf{ARM Compute Library client (OpenCL)}
+
+ReQuEST promotes reusability of AI/ML workflows, packages and artifacts using CK framework. 
+Since image classification using ArmCL was already shared as CK workflows and packages 
+at \url{https://github.com/dividiti/ck-request-asplos18-mobilenets-armcl-opencl} and added to the ReQuEST scoreboard, 
+we can simply reuse this workflow and compare against public results!
+
+Please, follow this ReadME to reproduce ArmCL classification results on Firefly-RK3399: 
+\url{https://github.com/dividiti/ck-request-asplos18-mobilenets-armcl-opencl}.
+
+\subsubsection{Validated results}
+
+Validated experimental results were recorded and processed using scripts in the following CK entry:
+
+\begin{verbatim}
+$ ck find script:benchmark-request-tvm-arm
+\end{verbatim}
+
+We plan to automate them further for the future ReQuEST editions.
+
 \end{document}
