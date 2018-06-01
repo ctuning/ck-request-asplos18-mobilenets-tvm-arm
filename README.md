@@ -35,15 +35,16 @@ Details: [Link](http://cTuning.org/ae/submission_extra.html)
 * **Execution:** inference speed
 * **Metrics:** total execution time; top1/top5 accuracy over some (all) images from the data set
 * **Output:** classification result; execution time; accuracy
-* **Experiments:** CK command line
+* **Experiments:** automated via CK command line
 * **How much disk space required (approximately)?** ~4GB
 * **How much time is needed to prepare workflow (approximately)?** several hours (mainly native compilation of packages)
 * **How much time is needed to complete experiments (approximately)?** from several hours for performance validation to several days for ImageNet accuracy validation (50000 images)
-* **Collective Knowledge workflow framework used?** Yes
-* **Original artifact:** https://github.com/merrymercy/tvm-mali
 * **Publicly available?:** Yes
-* **Experimental results:** https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm
-* **Scoreboard:** http://cKnowledge.org/request-results
+* **Code license(s)?:** 
+* **CK workflow framework used?** Yes
+* **CK workflow URL:** https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm 
+* **CK results URL:** https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm
+* **Original artifact before ReQuEST/CK unification:** https://github.com/merrymercy/tvm-mali
 
 ## Installation 
 
