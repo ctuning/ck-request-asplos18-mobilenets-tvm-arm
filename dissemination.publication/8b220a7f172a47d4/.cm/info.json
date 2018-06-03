@@ -16,5 +16,6 @@
       "4",
       "1"
     ]
-  }
+  },
+  "data_name":"Optimizing Deep Learning Workloads on ARM GPU with TVM"
 }

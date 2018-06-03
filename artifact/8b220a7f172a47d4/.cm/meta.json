@@ -7,8 +7,12 @@
     "reusable": "yes"
   },
   "artifact_doi": "https://doi.org/10.1145/3229770",
+  "ck_repo_results":"ck-request-asplos18-results-mobilenets-tvm-arm",
+  "ck_results": "https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm",
+  "ck_workflow": "https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm ",
   "dois": [],
   "html": "",
+  "original_repo": "https://github.com/merrymercy/tvm-mali",
   "paper_doi": "https://doi.org/10.1145/3229762.3229764",
   "repos": [
     {
@@ -19,5 +23,9 @@
       "name": "CK results",
       "url": "https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm"
     }
+  ],
+  "tags": [
+    "request-tournament",
+    "request-asplos18"
   ]
 }
