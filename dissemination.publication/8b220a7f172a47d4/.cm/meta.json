@@ -1,1 +1,21 @@
-{}
+{
+  "affiliations": {
+    "1": {
+      "name": "Shanghai Jiao Tong University"
+    },
+    "2": {
+      "name": "University of Washington"
+    }
+  }, 
+  "authors": [
+    {
+      "affiliation": "1", 
+      "name": "e1948739b11a609c"
+    },
+    {
+      "affiliation": "2", 
+      "name": "7993a3263561c196" 
+    }
+  ], 
+ "title":"Optimizing Deep Learning Workloads on ARM GPU with TVM"
+}

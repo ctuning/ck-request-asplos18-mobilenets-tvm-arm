@@ -4,6 +4,7 @@
   "data_alias": "ck-request-asplos18-mobilenets-tvm-arm",
   "data_name": "ck-request-asplos18-mobilenets-tvm-arm",
   "dict": {
+    "ck_artifact":"8b220a7f172a47d4",
     "shared": "git",
     "url": "https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm",
     "repo_deps": [
