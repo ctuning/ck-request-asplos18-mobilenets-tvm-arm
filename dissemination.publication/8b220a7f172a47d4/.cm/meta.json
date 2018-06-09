@@ -1,20 +1,22 @@
 {
   "affiliations": {
     "1": {
-      "name": "Shanghai Jiao Tong University"
+      "name": "Shanghai Jiao Tong University, China"
     },
     "2": {
-      "name": "University of Washington"
+      "name": "University of Washington, USA"
     }
   },
   "authors": [
     {
       "affiliation": "1",
-      "name": "e1948739b11a609c"
+      "name": "e1948739b11a609c",
+      "email_address": "mercy_zheng@sjtu.edu.cn"
     },
     {
       "affiliation": "2",
-      "name": "7993a3263561c196"
+      "name": "7993a3263561c196",
+      "email_address": "tqchen@cs.washington.edu"
     }
   ],
   "tags": [
