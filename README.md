@@ -23,7 +23,7 @@ on reproducible SW/HW co-design of deep learning (speed, accuracy, energy, costs
 
 Details: [Link](http://cTuning.org/ae/submission_extra.html)
 
-* **Algorithm:** image classification
+* **Algorithm:** image classification with ResNet-18, MobileNet and VGG16
 * **Program:** TVM/NNVM, ARM Compute Library, MXNet, OpenBLAS
 * **Compilation:** g++
 * **Transformations:**

@@ -1,0 +1,5 @@
+With the great success of deep learning, the demand for deploying deep neural networks to mobile devices is 
+growing rapidly. However, current popular deep learning frameworks are often poorly optimized for mobile devices,
+especially mobile GPU.
+In this paper, we follow the pipeline proposed by TVM/NNVM, and optimize both kernel implementations and dataflow graph for ARM Mali GPU.
+Compared with vendor-provided ARM Compute Library,  our kernel implementations and end-to-end pipeline are 1.7x faster on VGG16 and 2.2x faster on mobilenet.
