@@ -9,7 +9,9 @@
   "artifact_doi": "https://doi.org/10.1145/3229770", 
   "ck_repo_results": "ck-request-asplos18-results-mobilenets-tvm-arm", 
   "ck_results": "https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm", 
-  "ck_workflow": "https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm ", 
+  "ck_workflow": "https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm", 
+  "copyright_holder_name": "Lianmin Zheng", 
+  "copyright_holder_year": "2018", 
   "dois": [], 
   "html": "", 
   "keywords": [
@@ -18,6 +20,7 @@
     "Deep Learning", 
     "TVM"
   ], 
+  "license": "authors' code is available under MIT license; CK workflow is available under BSD 3-clause license", 
   "original_repo": "https://github.com/merrymercy/tvm-mali", 
   "paper_doi": "https://doi.org/10.1145/3229762.3229764", 
   "repos": [

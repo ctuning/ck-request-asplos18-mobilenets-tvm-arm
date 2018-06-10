@@ -40,7 +40,7 @@ Details: [Link](http://cTuning.org/ae/submission_extra.html)
 * **How much time is needed to prepare workflow (approximately)?** several hours (mainly native compilation of packages)
 * **How much time is needed to complete experiments (approximately)?** hours for full ImageNet accuracy validation (50000 images)
 * **Publicly available?:** Yes
-* **Code license(s)?:** 
+* **Code license(s)?:** MIT license
 * **CK workflow framework used?** Yes
 * **CK workflow URL:** https://github.com/ctuning/ck-request-asplos18-mobilenets-tvm-arm 
 * **CK results URL:** https://github.com/ctuning/ck-request-asplos18-results-mobilenets-tvm-arm
