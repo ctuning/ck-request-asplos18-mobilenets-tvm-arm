@@ -177,7 +177,7 @@ To make the environment more stable, we close the GUI on board, and set the `per
 \subsection {Single Layer Comparison}
 We take a layer in VGG16 as test case, and investigate the speed up bought by different optimization techniques.
 The input shape of this layer is $(C, H, W) = (56, 56, 256)$, and filter shape is $(OC, IC, K, K )= (256, 256, 3, 3)$. As shown in Table. \ref{table:conv2d}, Winograd algorithm is the most efficient one.
-\begin{table*}[h]
+\begin{table*}[htbp]
 \centering
 \begin{tabular}{lccc}
 \hline
