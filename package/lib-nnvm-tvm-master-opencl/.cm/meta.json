@@ -1,6 +1,6 @@
 {
   "check_exit_status": "yes", 
-  "comment": "build NNVM (with TVM) OpenCL from master", 
+  "comment": "deprecated - see package:lib-tvm-master-llvm-opencl", 
   "customize": {
     "extra_dir": "", 
     "git_src_dir": "src", 
@@ -10,7 +10,7 @@
       "PACKAGE_CONFIGURE_FLAGS_LINUX": "", 
       "PACKAGE_COPY": "NO", 
       "PACKAGE_GIT": "YES", 
-      "PACKAGE_GIT_CLONE_FLAGS": "--recursive", 
+      "PACKAGE_GIT_SUBMODULES": "YES", 
       "PACKAGE_PATCH": "NO", 
       "PACKAGE_SKIP_BUILD_ERROR": "NO", 
       "PACKAGE_SKIP_CLEAN_INSTALL": "NO", 
@@ -18,7 +18,8 @@
       "PACKAGE_SKIP_CLEAN_SRC_DIR": "NO", 
       "PACKAGE_SKIP_LINUX_MAKE": "YES",
       "PACKAGE_SUB_DIR": "src", 
-      "PACKAGE_URL_LINUX": "https://github.com/dmlc/nnvm.git", 
+      "PACKAGE_GIT_CHECKOUT": "d31f58b37ab7d5d211cbcfcc35e2af332b593a66",
+      "PACKAGE_URL_LINUX": "https://github.com/dmlc/tvm", 
       "PYTHON_EXE": "python", 
       "USE_OPENCL": 1 
     }, 
@@ -46,7 +47,7 @@
       "tags": "lib,opencl"
     }
   }, 
-  "end_full_path_universal": "src$#sep#$python$#sep#$nnvm$#sep#$__init__.py", 
+  "end_full_path_universal": "src$#sep#$nnvm$#sep#$python$#sep#$nnvm$#sep#$__init__.py", 
   "need_cpu_info": "yes", 
   "only_for_host_os_tags": [
     "linux" 
