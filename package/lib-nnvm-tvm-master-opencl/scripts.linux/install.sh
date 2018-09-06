@@ -40,7 +40,7 @@ echo "Preparing vars for TVM ..."
 # Check extra stuff
 EXTRA_FLAGS=""
 
-cd ${INSTALL_DIR}/src/tvm
+cd ${INSTALL_DIR}/src
 pwd 
 make -j ${CK_HOST_CPU_NUMBER_OF_PROCESSORS} \
       USE_OPENCL=${USE_OPENCL}\
@@ -50,10 +50,11 @@ if [ "${?}" != "0" ] ; then
   echo "Error: make failed!"
   exit 1
 fi
-cd ${INSTALL_DIR}/src
 
 echo "**************************************************************"
 echo "Preparing vars for NVVM ..."
+
+cd ${INSTALL_DIR}/src/nnvm
 
 make; 
 if [ "${?}" != "0" ] ; then

@@ -73,9 +73,10 @@ def setup(i):
     p1=os.path.dirname(fp)
     pl=os.path.dirname(p1)
     pi=os.path.dirname(pl)
+    p0=os.path.dirname(pi)
 
-    ptvm=os.path.join(pi,'tvm','python')
-    ptopi=os.path.join(pi,'tvm','topi','python')
+    ptvm=os.path.join(p0,'python')
+    ptopi=os.path.join(p0,'topi','python')
 
     env[ep]=pi
     env[ep+'_LIB']=pl

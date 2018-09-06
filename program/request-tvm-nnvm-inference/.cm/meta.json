@@ -133,7 +133,7 @@
       "name": "NNVM TVM library", 
       "skip_pruning_by_other_deps": "yes", 
       "sort": 10, 
-      "tags": "lib,nnvm,nnvm-tvm,vgpu"
+      "tags": "lib,tvm,vllvm,vopencl"
     }, 
     "python": {
       "local": "yes", 
@@ -149,7 +149,7 @@
   }, 
   "tags": [
     "tmv-nnvm", 
-    "bechmark", 
+    "benchmark", 
     "tvm", 
     "vgpu" 
   ]
