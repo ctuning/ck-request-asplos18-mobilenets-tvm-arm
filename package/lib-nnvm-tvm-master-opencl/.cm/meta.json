@@ -1,78 +1,78 @@
 {
-  "check_exit_status": "yes", 
-  "comment": "deprecated - see package:lib-tvm-master-llvm-opencl", 
+  "check_exit_status": "yes",
+  "comment": "deprecated - see package:lib-tvm-master-llvm-opencl",
   "customize": {
-    "extra_dir": "", 
-    "git_src_dir": "src", 
+    "extra_dir": "",
+    "git_src_dir": "src",
     "install_env": {
-      "PACKAGE_BUILD_TYPE": "make", 
-      "PACKAGE_CONFIGURE_FLAGS": "", 
-      "PACKAGE_CONFIGURE_FLAGS_LINUX": "", 
-      "PACKAGE_COPY": "NO", 
-      "PACKAGE_GIT": "YES", 
-      "PACKAGE_GIT_SUBMODULES": "YES", 
-      "PACKAGE_PATCH": "NO", 
-      "PACKAGE_SKIP_BUILD_ERROR": "NO", 
-      "PACKAGE_SKIP_CLEAN_INSTALL": "NO", 
-      "PACKAGE_SKIP_CLEAN_OBJ": "NO", 
-      "PACKAGE_SKIP_CLEAN_SRC_DIR": "NO", 
-      "PACKAGE_SKIP_LINUX_MAKE": "YES",
-      "PACKAGE_SUB_DIR": "src", 
+      "PACKAGE_BUILD_TYPE": "make",
+      "PACKAGE_CONFIGURE_FLAGS": "",
+      "PACKAGE_CONFIGURE_FLAGS_LINUX": "",
+      "PACKAGE_COPY": "NO",
+      "PACKAGE_GIT": "YES",
       "PACKAGE_GIT_CHECKOUT": "d31f58b37ab7d5d211cbcfcc35e2af332b593a66",
-      "PACKAGE_URL_LINUX": "https://github.com/dmlc/tvm", 
-      "PYTHON_EXE": "python", 
-      "USE_OPENCL": 1 
-    }, 
-    "no_ver_in_suggested_path": "yes", 
-    "use_git_revision": "yes", 
-    "version": "master"
-  }, 
-  "deps": {
-    "python": {
-      "local": "yes",
-      "name": "Python",
-      "sort": 5,
-      "tags": "compiler,python"
+      "PACKAGE_GIT_SUBMODULES": "YES",
+      "PACKAGE_PATCH": "NO",
+      "PACKAGE_SKIP_BUILD_ERROR": "NO",
+      "PACKAGE_SKIP_CLEAN_INSTALL": "NO",
+      "PACKAGE_SKIP_CLEAN_OBJ": "NO",
+      "PACKAGE_SKIP_CLEAN_SRC_DIR": "NO",
+      "PACKAGE_SKIP_LINUX_MAKE": "YES",
+      "PACKAGE_SUB_DIR": "src",
+      "PACKAGE_URL_LINUX": "https://github.com/dmlc/tvm",
+      "PYTHON_EXE": "python",
+      "USE_OPENCL": 1
     },
+    "no_ver_in_suggested_path": "yes",
+    "use_git_revision": "yes",
+    "version": "master"
+  },
+  "deps": {
     "compiler": {
-      "local": "yes", 
-      "name": "LLVM compiler", 
-      "sort": 10, 
-      "tags": "compiler, lang-c, llvm" 
-    }, 
+      "local": "yes",
+      "name": "LLVM compiler",
+      "sort": 10,
+      "tags": "compiler, lang-c, llvm"
+    },
     "lib-opencl": {
       "local": "yes",
       "name": "OpenCL library",
       "sort": 11,
       "tags": "lib,opencl"
+    },
+    "python": {
+      "local": "yes",
+      "name": "Python",
+      "sort": 5,
+      "tags": "compiler,python"
     }
-  }, 
-  "end_full_path_universal": "src$#sep#$nnvm$#sep#$python$#sep#$nnvm$#sep#$__init__.py", 
-  "need_cpu_info": "yes", 
+  },
+  "end_full_path_universal": "src$#sep#$nnvm$#sep#$python$#sep#$nnvm$#sep#$__init__.py",
+  "need_cpu_info": "yes",
   "only_for_host_os_tags": [
-    "linux" 
-  ], 
+    "linux"
+  ],
   "only_for_target_os_tags": [
-    "linux" 
-  ], 
-  "process_script": "install", 
-  "soft_uoa": "2086788429a96c47", 
-  "suggested_path": "lib-tvm-nnvm", 
+    "linux"
+  ],
+  "process_script": "install",
+  "soft_uoa": "2086788429a96c47",
+  "suggested_path": "lib-tvm-nnvm",
   "tags": [
-    "lib", 
-    "nnvm", 
+    "lib",
+    "nnvm",
     "nnvm-tvm",
-    "vmaster", 
+    "vmaster",
     "vsources",
     "vopencl",
     "vgpu"
-  ], 
+  ],
   "use_preprocess_scripts_from_another_entry": {
-    "data_uoa": "fd44428fbc77f77f", 
+    "data_uoa": "fd44428fbc77f77f",
     "module_uoa": "84e27ad9dd12e734"
-  }, 
+  },
   "use_scripts_from_another_entry": {
-    "data_uoa": "cd9ccc74060b3d18", 
+    "data_uoa": "cd9ccc74060b3d18",
     "module_uoa": "script"
   }
 }

@@ -1,21 +1,36 @@
 {
-  "backup_data_uid": "c44243da928112c2", 
-  "data_name": "request-tvm-nnvm-inference", 
-  "no_compile": "yes", 
-  "no_target_file": "yes", 
+  "backup_data_uid": "c44243da928112c2",
+  "data_name": "request-tvm-nnvm-inference",
+  "no_compile": "yes",
+  "no_target_file": "yes",
   "print_files_after_run": [
     "tmp-stdout.tmp",
     "tmp-stderr.tmp"
-  ], 
-  "process_in_tmp": "yes", 
-  "program": "yes", 
+  ],
+  "process_in_tmp": "yes",
+  "program": "yes",
   "run_cmds": {
+    "all": {
+      "ignore_return_code": "no",
+      "run_time": {
+        "output_invariant_of_repeat": "yes",
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model all",
+        "run_cmd_out1": "tmp-stdout.tmp",
+        "run_cmd_out2": "tmp-stderr.tmp",
+        "run_output_files": [
+          "tmp-ck-timer.json",
+          "tmp-ck-output.bin",
+          "tmp-ck-output.json"
+        ]
+      }
+    },
     "classify": {
       "dataset_tags": [
-        "image", 
-        "jpeg", 
+        "image",
+        "jpeg",
         "dataset"
-      ], 
+      ],
+      "ignore_return_code": "no",
       "run_deps": {
         "lib-mxnet": {
           "local": "yes",
@@ -32,19 +47,61 @@
           "sort": 20,
           "tags": "mxnetmodel"
         }
-      }, 
-      "ignore_return_code": "no", 
+      },
       "run_time": {
-        "fine_grain_timer_file": "tmp-ck-timer.json", 
+        "fine_grain_timer_file": "tmp-ck-timer.json",
         "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../classify.py --image=$#dataset_path#$$#dataset_filename#$",
         "run_output_files": [
           "tmp-ck-timer.json"
         ]
       }
     },
+    "help": {
+      "ignore_return_code": "yes",
+      "run_time": {
+        "need_compute_device": "opencl",
+        "output_invariant_of_repeat": "yes",
+        "run_cmd_main": "sh ../help.sh",
+        "run_cmd_out1": "tmp-stdout.tmp",
+        "run_cmd_out2": "tmp-stderr.tmp"
+      }
+    },
+    "run-net": {
+      "ignore_return_code": "yes",
+      "run_time": {
+        "fine_grain_timer_file": "tmp-ck-output.json",
+        "output_invariant_of_repeat": "yes",
+        "post_process_cmds": [
+          "python $#src_path_local#$ck_postprocess.py"
+        ],
+        "post_process_via_ck": "yes",
+        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model=$<<CK_TVM_MODEL>>$ --dtype=$<<CK_TVM_DTYPE>>$",
+        "run_cmd_out1": "tmp-stdout.tmp",
+        "run_cmd_out2": "tmp-stderr.tmp",
+        "run_output_files": [
+          "tmp-ck-timer.json",
+          "tmp-ck-output.bin",
+          "tmp-ck-output.json"
+        ]
+      }
+    },
     "test": {
-      "ignore_return_code": "no", 
+      "ignore_return_code": "no",
       "run_deps": {
+        "dataset-imagenet-aux": {
+          "force_target_as_host": "yes",
+          "local": "yes",
+          "name": "ImageNet dataset (aux)",
+          "sort": 70,
+          "tags": "dataset,imagenet,val"
+        },
+        "dataset-imagenet-val": {
+          "force_target_as_host": "yes",
+          "local": "yes",
+          "name": "ImageNet dataset (val)",
+          "sort": 60,
+          "tags": "dataset,imagenet,aux"
+        },
         "lib-mxnet": {
           "local": "yes",
           "name": "MXNet library",
@@ -59,98 +116,43 @@
           "skip_pruning_by_other_deps": "yes",
           "sort": 20,
           "tags": "mxnetmodel"
-        },
-        "dataset-imagenet-val": {
-          "force_target_as_host": "yes", 
-          "local": "yes", 
-          "name": "ImageNet dataset (val)", 
-          "sort": 60, 
-          "tags": "dataset,imagenet,aux"
-        }, 
-        "dataset-imagenet-aux": {
-          "force_target_as_host": "yes", 
-          "local": "yes", 
-          "name": "ImageNet dataset (aux)", 
-          "sort": 70, 
-          "tags": "dataset,imagenet,val"
-        } 
-      }, 
+        }
+      },
       "run_time": {
-        "fine_grain_timer_file": "tmp-ck-timer.json", 
+        "fine_grain_timer_file": "tmp-ck-timer.json",
         "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../classify.py",
         "run_output_files": [
           "tmp-ck-timer.json"
         ]
-      } 
-    },
-    "all": {
-      "ignore_return_code": "no", 
-      "run_time": {
-        "output_invariant_of_repeat": "yes", 
-        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model all", 
-        "run_cmd_out1": "tmp-stdout.tmp", 
-        "run_cmd_out2": "tmp-stderr.tmp", 
-        "run_output_files": [
-          "tmp-ck-timer.json", 
-          "tmp-ck-output.bin", 
-          "tmp-ck-output.json"
-        ]
-      }
-    }, 
-    "help": {
-      "ignore_return_code": "yes", 
-      "run_time": {
-        "need_compute_device": "opencl", 
-        "output_invariant_of_repeat": "yes", 
-        "run_cmd_main": "sh ../help.sh", 
-        "run_cmd_out1": "tmp-stdout.tmp", 
-        "run_cmd_out2": "tmp-stderr.tmp"
-      }
-    }, 
-    "run-net": {
-      "ignore_return_code": "yes", 
-      "run_time": {
-        "output_invariant_of_repeat": "yes", 
-        "post_process_via_ck": "yes",
-        "post_process_cmds":[
-          "python $#src_path_local#$ck_postprocess.py"
-        ],
-        "fine_grain_timer_file": "tmp-ck-output.json",
-        "run_cmd_main": "$<<CK_ENV_COMPILER_PYTHON_FILE>>$ ../mali_imagenet_bench.py --model=$<<CK_TVM_MODEL>>$ --dtype=$<<CK_TVM_DTYPE>>$", 
-        "run_cmd_out1": "tmp-stdout.tmp", 
-        "run_cmd_out2": "tmp-stderr.tmp", 
-        "run_output_files": [
-          "tmp-ck-timer.json", 
-          "tmp-ck-output.bin", 
-          "tmp-ck-output.json"
-        ]
       }
     }
-  }, 
+  },
   "run_deps": {
     "lib-nnvm-tvm": {
-      "local": "yes", 
-      "name": "NNVM TVM library", 
-      "skip_pruning_by_other_deps": "yes", 
-      "sort": 10, 
+      "local": "yes",
+      "name": "NNVM TVM library",
+      "skip_pruning_by_other_deps": "yes",
+      "sort": 10,
       "tags": "lib,tvm,vllvm,vopencl"
-    }, 
+    },
     "python": {
-      "local": "yes", 
-      "name": "python", 
-      "sort": 8, 
+      "local": "yes",
+      "name": "python",
+      "sort": 8,
       "tags": "compiler,lang-python,python"
     }
-  }, 
+  },
   "run_vars": {
-    "CK_BATCH_SIZE": 1, 
-    "CK_TVM_MODEL": "mobilenet",
-    "CK_TVM_DTYPE": "float32"
-  }, 
+    "CK_BATCH_SIZE": 1,
+    "CK_TVM_DTYPE": "float32",
+    "CK_TVM_MODEL": "mobilenet"
+  },
   "tags": [
-    "tmv-nnvm", 
-    "benchmark", 
-    "tvm", 
-    "vgpu" 
-  ]
+    "tmv-nnvm",
+    "benchmark",
+    "tvm",
+    "vgpu"
+  ],
+  "template": "yes",
+  "template_type": "image classification via TVM"
 }
